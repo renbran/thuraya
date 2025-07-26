@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* EAGER MARVEL Design System - Dark Sci-Fi Theme
+   Colors, fonts, spacing, animations for AI-powered business clarity
+*/
+
+@layer base {
+  :root {
+    /* EAGER MARVEL Core Colors */
+    --midnight: 197 71% 5%;         /* #0B0C10 converted to HSL */
+    --photon: 328 100% 50%;         /* #FF007F */
+    --frost: 220 9% 92%;            /* #E4E6EB */
+    
+    /* Aurora Gradient Colors */
+    --aurora-start: 184 100% 50%;   /* #00F5FF */
+    --aurora-end: 252 69% 67%;      /* #7B68EE */
+    
+    /* System Colors - Dark Theme */
+    --background: var(--midnight);
+    --foreground: var(--frost);
+    
+    --card: 197 71% 7%;
+    --card-foreground: var(--frost);
+    
+    --popover: 197 71% 8%;
+    --popover-foreground: var(--frost);
+    
+    --primary: var(--photon);
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 197 20% 20%;
+    --secondary-foreground: var(--frost);
+    
+    --muted: 197 15% 15%;
+    --muted-foreground: 220 9% 70%;
+    
+    --accent: var(--aurora-start);
+    --accent-foreground: var(--midnight);
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 197 20% 20%;
+    --input: 197 20% 15%;
+    --ring: var(--aurora-start);
+    
+    --radius: 1rem;
+    
+    /* Gradients */
+    --gradient-aurora: linear-gradient(135deg, hsl(var(--aurora-start)), hsl(var(--aurora-end)));
+    --gradient-midnight: linear-gradient(180deg, hsl(var(--midnight)), hsl(197 71% 8%));
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(var(--aurora-start) / 0.3);
+    --shadow-photon: 0 10px 30px hsl(var(--photon) / 0.2);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --bounce-subtle: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
