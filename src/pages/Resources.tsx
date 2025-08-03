@@ -9,6 +9,38 @@ const Resources = () => {
   const [activeTab, setActiveTab] = useState<"blog" | "whitepapers" | "webinars">("blog");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setNewsletterStatus('submitting');
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xovaodeb', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: newsletterEmail,
+          _subject: 'Newsletter Subscription Request',
+          type: 'newsletter_subscription'
+        }),
+      });
+
+      if (response.ok) {
+        setNewsletterStatus('success');
+        setNewsletterEmail('');
+      } else {
+        setNewsletterStatus('error');
+      }
+    } catch (error) {
+      setNewsletterStatus('error');
+    }
+    
+    setTimeout(() => setNewsletterStatus('idle'), 5000);
+  };
 
   const blogPosts = [
     {
@@ -533,21 +565,42 @@ const Resources = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-satoshi font-black text-midnight mb-4">
-              Get the Friday Marvel Brief
+              Stay Updated with Thuraya
             </h2>
             <p className="text-xl text-midnight/80 font-inter mb-8 max-w-2xl mx-auto">
-              Weekly insights, case studies, and actionable strategies delivered to your inbox.
+              Get the latest insights, case studies, and industry updates delivered to your inbox.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+            
+            {newsletterStatus === 'success' && (
+              <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-green-600 max-w-lg mx-auto">
+                Thank you for subscribing! Check your email for confirmation.
+              </div>
+            )}
+            
+            {newsletterStatus === 'error' && (
+              <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-600 max-w-lg mx-auto">
+                Something went wrong. Please try again or contact us directly.
+              </div>
+            )}
+
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
               <input
                 type="email"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
                 placeholder="Enter your email"
+                required
                 className="flex-1 px-6 py-4 rounded-full text-foreground bg-background border border-border focus:outline-none focus:ring-2 focus:ring-midnight"
               />
-              <CTAButton variant="secondary">
-                Subscribe
+              <CTAButton 
+                variant="secondary"
+                type="submit"
+                disabled={newsletterStatus === 'submitting'}
+                onClick={undefined}
+              >
+                {newsletterStatus === 'submitting' ? 'Subscribing...' : 'Subscribe'}
               </CTAButton>
-            </div>
+            </form>
           </motion.div>
         </div>
       </section>

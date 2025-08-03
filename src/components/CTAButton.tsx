@@ -7,6 +7,8 @@ interface CTAButtonProps {
   variant?: "primary" | "secondary" | "outline";
   size?: "default" | "lg";
   className?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 export function CTAButton({ 
@@ -14,9 +16,11 @@ export function CTAButton({
   onClick, 
   variant = "primary", 
   size = "default",
-  className 
+  className,
+  type = "button",
+  disabled = false
 }: CTAButtonProps) {
-  const baseClasses = "font-satoshi font-bold rounded-full transition-all duration-300 relative overflow-hidden group";
+  const baseClasses = "font-satoshi font-bold rounded-full transition-all duration-300 relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed";
   
   const variantClasses = {
     primary: "text-midnight font-bold" + " " + "bg-[linear-gradient(to_right,#ffb347,#00cfff,#7a4ef3)] hover:shadow-glow",
@@ -31,10 +35,12 @@ export function CTAButton({
 
   return (
     <motion.button
+      type={type}
+      disabled={disabled}
       className={cn(baseClasses, variantClasses[variant], sizeClasses[size], className)}
       onClick={onClick}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
+      whileHover={{ scale: disabled ? 1 : 1.05 }}
+      whileTap={{ scale: disabled ? 1 : 0.95 }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -45,7 +51,7 @@ export function CTAButton({
         style={{ background: 'linear-gradient(to right, #ffb347, #00cfff, #7a4ef3)' }}
         initial={false}
         animate={{ opacity: 0 }}
-        whileHover={{ opacity: 0.2 }}
+        whileHover={{ opacity: disabled ? 0 : 0.2 }}
         transition={{ duration: 0.3 }}
       />
     </motion.button>

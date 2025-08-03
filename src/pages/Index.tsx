@@ -439,13 +439,21 @@ const Index = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTAButton variant="secondary" size="lg">
+              <CTAButton 
+                variant="secondary" 
+                size="lg"
+                onClick={() => window.open('https://wa.me/971563905772?text=Hello, I would like to book a free consultation.', '_blank')}
+              >
                 <Calendar className="w-5 h-5 mr-2" />
                 Book Free Consultation
               </CTAButton>
-              <CTAButton variant="outline" size="lg">
+              <CTAButton 
+                variant="outline" 
+                size="lg"
+                onClick={() => window.location.href = 'mailto:info@tachimao.com?subject=Inquiry about your services'}
+              >
                 <Users className="w-5 h-5 mr-2" />
-                Learn More
+                Email Us
               </CTAButton>
             </div>
             
@@ -510,9 +518,42 @@ const Index = () => {
           <div>
             <h3 className="font-satoshi font-bold text-foreground mb-4">Contact</h3>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-golden transition-colors">Book Consultation</a></li>
-              <li><a href="#" className="hover:text-golden transition-colors">Email Us</a></li>
-              <li><a href="#" className="hover:text-golden transition-colors">About</a></li>
+              <li>
+                <a 
+                  href="mailto:info@tachimao.com" 
+                  className="hover:text-golden transition-colors"
+                >
+                  info@tachimao.com
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="tel:+971563905772" 
+                  className="hover:text-golden transition-colors"
+                >
+                  +971 56 390 5772
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://wa.me/971563905772" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-golden transition-colors"
+                >
+                  WhatsApp
+                </a>
+              </li>
+              <li>
+                <a 
+                  href="https://t.me/+971563905772" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-golden transition-colors"
+                >
+                  Telegram
+                </a>
+              </li>
             </ul>
           </div>
         </div>

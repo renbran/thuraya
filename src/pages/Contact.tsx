@@ -2,8 +2,57 @@ import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { CTAButton } from "@/components/CTAButton";
 import { MapPin, Mail, Phone, MessageCircle } from "lucide-react";
+import { useState } from "react";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    budget: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch('https://formspree.io/f/xovaodeb', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          _replyto: formData.email,
+          _subject: `New inquiry from ${formData.name} - ${formData.company}`,
+        }),
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', company: '', budget: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      setSubmitStatus('error');
+    }
+    
+    setIsSubmitting(false);
+    setTimeout(() => setSubmitStatus('idle'), 5000);
+  };
+
   return (
     <div className="bg-background text-foreground">
       <Navigation />
@@ -11,39 +60,96 @@ const Contact = () => {
       <section className="pt-24 pb-20">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-16">
-            {/* World Map */}
+            {/* Contact Information */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
               <h1 className="text-5xl font-satoshi font-black bg-gradient-aurora bg-clip-text text-transparent mb-8">
-                Talk to Humans
+                Get In Touch
               </h1>
-              <div className="bg-card border border-border rounded-2xl p-8 h-96 relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-midnight opacity-50" />
-                <div className="relative z-10 space-y-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-aurora-start rounded-full animate-pulse" />
+              
+              <div className="space-y-8">
+                <div className="bg-card border border-border rounded-2xl p-6">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-aurora rounded-full flex items-center justify-center">
+                      <Mail className="w-6 h-6 text-midnight" />
+                    </div>
                     <div>
-                      <div className="font-satoshi font-bold">New York</div>
-                      <div className="text-sm text-muted-foreground">Americas HQ</div>
+                      <h3 className="font-satoshi font-bold text-lg">Email Us</h3>
+                      <p className="text-muted-foreground">Send us a message anytime</p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-photon rounded-full animate-pulse" />
+                  <a 
+                    href="mailto:info@tachimao.com"
+                    className="text-aurora-start hover:text-aurora-end transition-colors font-medium"
+                  >
+                    info@tachimao.com
+                  </a>
+                </div>
+
+                <div className="bg-card border border-border rounded-2xl p-6">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-aurora rounded-full flex items-center justify-center">
+                      <Phone className="w-6 h-6 text-midnight" />
+                    </div>
                     <div>
-                      <div className="font-satoshi font-bold">London</div>
-                      <div className="text-sm text-muted-foreground">EMEA HQ</div>
+                      <h3 className="font-satoshi font-bold text-lg">Call Us</h3>
+                      <p className="text-muted-foreground">Available during business hours</p>
                     </div>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-aurora-end rounded-full animate-pulse" />
+                  <a 
+                    href="tel:+971563905772"
+                    className="text-aurora-start hover:text-aurora-end transition-colors font-medium"
+                  >
+                    +971 56 390 5772
+                  </a>
+                </div>
+
+                <div className="bg-card border border-border rounded-2xl p-6">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-aurora rounded-full flex items-center justify-center">
+                      <MessageCircle className="w-6 h-6 text-midnight" />
+                    </div>
                     <div>
-                      <div className="font-satoshi font-bold">Singapore</div>
-                      <div className="text-sm text-muted-foreground">APAC HQ</div>
+                      <h3 className="font-satoshi font-bold text-lg">WhatsApp & Telegram</h3>
+                      <p className="text-muted-foreground">Quick messaging support</p>
                     </div>
                   </div>
+                  <div className="space-y-2">
+                    <a 
+                      href="https://wa.me/971563905772"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-aurora-start hover:text-aurora-end transition-colors font-medium"
+                    >
+                      WhatsApp: +971 56 390 5772
+                    </a>
+                    <a 
+                      href="https://t.me/+971563905772"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-aurora-start hover:text-aurora-end transition-colors font-medium"
+                    >
+                      Telegram: +971 56 390 5772
+                    </a>
+                  </div>
+                </div>
+
+                <div className="bg-card border border-border rounded-2xl p-6">
+                  <div className="flex items-center space-x-4 mb-4">
+                    <div className="w-12 h-12 bg-gradient-aurora rounded-full flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-midnight" />
+                    </div>
+                    <div>
+                      <h3 className="font-satoshi font-bold text-lg">Location</h3>
+                      <p className="text-muted-foreground">UAE Office</p>
+                    </div>
+                  </div>
+                  <p className="text-aurora-start font-medium">
+                    United Arab Emirates
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -55,37 +161,87 @@ const Contact = () => {
               transition={{ duration: 0.8 }}
               className="bg-card border border-border rounded-2xl p-8"
             >
-              <h2 className="text-3xl font-satoshi font-bold mb-6">Get In Touch</h2>
-              <form className="space-y-6">
+              <h2 className="text-3xl font-satoshi font-bold mb-6">Send us a Message</h2>
+              
+              {submitStatus === 'success' && (
+                <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-green-400">
+                  Thank you! Your message has been sent successfully. We'll get back to you soon.
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400">
+                  Sorry, there was an error sending your message. Please try again or contact us directly.
+                </div>
+              )}
+
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <input 
-                    placeholder="Name" 
-                    className="w-full p-4 bg-background border border-border rounded-xl"
+                    type="text"
+                    name="name"
+                    placeholder="Your Name" 
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full p-4 bg-background border border-border rounded-xl focus:border-aurora-start focus:outline-none transition-colors"
                   />
                   <input 
-                    placeholder="Email" 
-                    className="w-full p-4 bg-background border border-border rounded-xl"
+                    type="email"
+                    name="email"
+                    placeholder="Your Email" 
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full p-4 bg-background border border-border rounded-xl focus:border-aurora-start focus:outline-none transition-colors"
                   />
                 </div>
                 <input 
-                  placeholder="Company" 
-                  className="w-full p-4 bg-background border border-border rounded-xl"
+                  type="text"
+                  name="company"
+                  placeholder="Company (Optional)" 
+                  value={formData.company}
+                  onChange={handleInputChange}
+                  className="w-full p-4 bg-background border border-border rounded-xl focus:border-aurora-start focus:outline-none transition-colors"
                 />
-                <select className="w-full p-4 bg-background border border-border rounded-xl">
-                  <option>Budget Range</option>
-                  <option>Under $25k</option>
-                  <option>$25k - $100k</option>
-                  <option>Over $100k</option>
+                <select 
+                  name="budget"
+                  value={formData.budget}
+                  onChange={handleInputChange}
+                  className="w-full p-4 bg-background border border-border rounded-xl focus:border-aurora-start focus:outline-none transition-colors"
+                  title="Select your budget range"
+                >
+                  <option value="">Select Budget Range (Optional)</option>
+                  <option value="under-25k">Under $25k</option>
+                  <option value="25k-100k">$25k - $100k</option>
+                  <option value="over-100k">Over $100k</option>
+                  <option value="consultation">Just looking for consultation</option>
                 </select>
                 <textarea 
-                  placeholder="Message" 
+                  name="message"
+                  placeholder="Tell us about your project or inquiry" 
                   rows={4}
-                  className="w-full p-4 bg-background border border-border rounded-xl"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full p-4 bg-background border border-border rounded-xl focus:border-aurora-start focus:outline-none transition-colors resize-vertical"
                 />
-                <CTAButton variant="primary" className="w-full">
-                  Send Message
+                <CTAButton 
+                  variant="primary" 
+                  className="w-full"
+                  type="submit"
+                  disabled={isSubmitting}
+                  onClick={undefined}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </CTAButton>
               </form>
+              
+              <div className="mt-8 pt-6 border-t border-border">
+                <p className="text-sm text-muted-foreground text-center">
+                  Prefer to reach out directly? Contact us via email or WhatsApp above.
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
