@@ -4,6 +4,7 @@ import { Navigation } from "@/components/Navigation";
 import { CTAButton } from "@/components/CTAButton";
 import { fadeInUp } from "@/lib/variants";
 import { Search, BookOpen, Video, Download, Clock, Calendar, ArrowRight, Filter, Tag } from "lucide-react";
+import { odooApi } from "../services/odooApi";
 
 const Resources = () => {
   const [activeTab, setActiveTab] = useState<"blog" | "whitepapers" | "webinars">("blog");
@@ -17,25 +18,76 @@ const Resources = () => {
     setNewsletterStatus('submitting');
     
     try {
-      const response = await fetch('https://formspree.io/f/xovaodeb', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: newsletterEmail,
-          _subject: 'Newsletter Subscription Request',
-          type: 'newsletter_subscription'
-        }),
-      });
-
-      if (response.ok) {
+      // First, try to create a newsletter lead in Odoo CRM
+      const odooResult = await odooApi.createNewsletterLead(newsletterEmail);
+      
+      if (odooResult.success) {
+        console.log('Newsletter lead created in Odoo with ID:', odooResult.leadId);
+        
+        // Also send via Formspree for backup email notification
+        try {
+          await fetch('https://formspree.io/f/mjkvgqvo', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: newsletterEmail,
+              _subject: `Newsletter Subscription Request (Odoo Lead #${odooResult.leadId})`,
+              type: 'newsletter_subscription',
+              odoo_lead_id: odooResult.leadId,
+              _to: 'info@tachimao.com'
+            }),
+          });
+        } catch (formspreeError) {
+          console.log('Formspree backup failed, but Odoo lead created successfully');
+        }
+        
         setNewsletterStatus('success');
         setNewsletterEmail('');
       } else {
-        setNewsletterStatus('error');
+        // If Odoo fails, fallback to Formspree only
+        console.log('Odoo newsletter integration failed:', odooResult.error);
+        
+        const response = await fetch('https://formspree.io/f/mjkvgqvo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: newsletterEmail,
+            _subject: 'Newsletter Subscription Request (Odoo failed)',
+            type: 'newsletter_subscription',
+            odoo_error: odooResult.error,
+            _to: 'info@tachimao.com'
+          }),
+        });
+
+        if (response.ok) {
+          setNewsletterStatus('success');
+          setNewsletterEmail('');
+        } else {
+          // Final fallback to mailto
+          const mailtoLink = `mailto:info@tachimao.com?subject=${encodeURIComponent(
+            'Newsletter Subscription Request'
+          )}&body=${encodeURIComponent(
+            `Please add this email to your newsletter: ${newsletterEmail}\n\nNote: Odoo integration failed`
+          )}`;
+          window.location.href = mailtoLink;
+          setNewsletterStatus('success');
+          setNewsletterEmail('');
+        }
       }
     } catch (error) {
+      console.error('Newsletter submission error:', error);
+      
+      // Final fallback to mailto
+      const mailtoLink = `mailto:info@tachimao.com?subject=${encodeURIComponent(
+        'Newsletter Subscription Request'
+      )}&body=${encodeURIComponent(
+        `Please add this email to your newsletter: ${newsletterEmail}\n\nNote: Form submission system failed`
+      )}`;
+      window.location.href = mailtoLink;
       setNewsletterStatus('error');
     }
     

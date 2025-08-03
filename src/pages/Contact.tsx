@@ -3,6 +3,7 @@ import { Navigation } from "@/components/Navigation";
 import { CTAButton } from "@/components/CTAButton";
 import { MapPin, Mail, Phone, MessageCircle } from "lucide-react";
 import { useState } from "react";
+import { odooApi, type LeadData } from "../services/odooApi";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -27,25 +28,96 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('https://formspree.io/f/xovaodeb', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          _replyto: formData.email,
-          _subject: `New inquiry from ${formData.name} - ${formData.company}`,
-        }),
-      });
+      // First, try to create a lead in Odoo CRM
+      const leadData: LeadData = {
+        name: `${formData.name}${formData.company ? ' - ' + formData.company : ''}`,
+        email_from: formData.email,
+        contact_name: formData.name,
+        company_name: formData.company,
+        description: `Budget: ${formData.budget}\n\nMessage:\n${formData.message}`,
+        source_id: 1, // Website source
+        medium_id: 1, // Digital medium
+        website: 'https://renbran.github.io/thuraya/',
+        tag_ids: [1], // Website inquiry tag
+      };
 
-      if (response.ok) {
+      const odooResult = await odooApi.createLead(leadData);
+      
+      if (odooResult.success) {
+        console.log('Lead created in Odoo with ID:', odooResult.leadId);
+        
+        // Also send via Formspree for backup email notification
+        try {
+          await fetch('https://formspree.io/f/mjkvgqvo', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: formData.name,
+              email: formData.email,
+              company: formData.company,
+              budget: formData.budget,
+              message: formData.message,
+              odoo_lead_id: odooResult.leadId,
+              _replyto: formData.email,
+              _subject: `New inquiry from ${formData.name}${formData.company ? ' - ' + formData.company : ''} (Odoo Lead #${odooResult.leadId})`,
+              _to: 'info@tachimao.com'
+            }),
+          });
+        } catch (formspreeError) {
+          console.log('Formspree backup failed, but Odoo lead created successfully');
+        }
+        
         setSubmitStatus('success');
         setFormData({ name: '', email: '', company: '', budget: '', message: '' });
       } else {
-        setSubmitStatus('error');
+        // If Odoo fails, fallback to Formspree only
+        console.log('Odoo integration failed:', odooResult.error);
+        
+        const response = await fetch('https://formspree.io/f/mjkvgqvo', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            budget: formData.budget,
+            message: formData.message,
+            odoo_error: odooResult.error,
+            _replyto: formData.email,
+            _subject: `New inquiry from ${formData.name}${formData.company ? ' - ' + formData.company : ''} (Odoo failed)`,
+            _to: 'info@tachimao.com'
+          }),
+        });
+
+        if (response.ok) {
+          setSubmitStatus('success');
+          setFormData({ name: '', email: '', company: '', budget: '', message: '' });
+        } else {
+          // Final fallback to mailto
+          const mailtoLink = `mailto:info@tachimao.com?subject=${encodeURIComponent(
+            `New inquiry from ${formData.name}${formData.company ? ' - ' + formData.company : ''}`
+          )}&body=${encodeURIComponent(
+            `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nBudget: ${formData.budget}\n\nMessage:\n${formData.message}\n\nNote: Odoo integration failed`
+          )}`;
+          window.location.href = mailtoLink;
+          setSubmitStatus('success');
+          setFormData({ name: '', email: '', company: '', budget: '', message: '' });
+        }
       }
     } catch (error) {
+      console.error('Form submission error:', error);
+      
+      // Final fallback to mailto
+      const mailtoLink = `mailto:info@tachimao.com?subject=${encodeURIComponent(
+        `New inquiry from ${formData.name}${formData.company ? ' - ' + formData.company : ''}`
+      )}&body=${encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nBudget: ${formData.budget}\n\nMessage:\n${formData.message}\n\nNote: Form submission system failed`
+      )}`;
+      window.location.href = mailtoLink;
       setSubmitStatus('error');
     }
     

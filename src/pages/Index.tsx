@@ -9,6 +9,7 @@ import { CTAButton } from "@/components/CTAButton";
 import { fadeInUp, staggerContainer, slideInLeft, slideInRight } from "@/lib/variants";
 import thurayaLogo from "@/assets/thuraya-logo-symbol.png";
 import { Calendar, Users, Heart, Star, ArrowRight, Compass, Eye, Lightbulb } from "lucide-react";
+import { odooApi, type LeadData } from "../services/odooApi";
 
 const Index = () => {
   const { scrollYProgress } = useScroll();
