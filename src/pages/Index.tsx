@@ -2,11 +2,12 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Navigation } from "@/components/Navigation";
 import { ParticleField } from "@/components/ParticleField";
+import { NetworkBackground } from "@/components/NetworkBackground";
 import { CountUpCard } from "@/components/CountUpCard";
 import { ScrollIndicator } from "@/components/ScrollIndicator";
 import { CTAButton } from "@/components/CTAButton";
 import { fadeInUp, staggerContainer, slideInLeft, slideInRight } from "@/lib/variants";
-import thurayaLogo from "@/assets/thuraya-logo-symbol.png";
+import thurayaLogo from "@/assets/thuraya-logo-transparent.png";
 import { Calendar, Users, Heart, Star, ArrowRight, Compass, Eye, Lightbulb } from "lucide-react";
 
 const Index = () => {
@@ -17,10 +18,11 @@ const Index = () => {
   const HeroSection = () => (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden" data-section="0">
       <Navigation />
+      <NetworkBackground />
       <ParticleField />
       
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-midnight" />
+      <div className="absolute inset-0 bg-gradient-connectivity" />
       
       <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
         <motion.div
@@ -34,10 +36,10 @@ const Index = () => {
             alt="Thuraya Path Logo" 
             className="w-32 h-32 mx-auto mb-8 animate-float"
           />
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-satoshi font-black bg-gradient-golden bg-clip-text text-transparent leading-tight mb-6">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-satoshi font-black bg-gradient-aurora bg-clip-text text-transparent leading-tight mb-6">
             THURAYA PATH
           </h1>
-          <p className="text-2xl md:text-3xl text-golden font-satoshi font-light tracking-wider">
+          <p className="text-2xl md:text-3xl bg-gradient-aurora bg-clip-text text-transparent font-satoshi font-light tracking-wider">
             CONSULTANT
           </p>
         </motion.div>
@@ -48,7 +50,7 @@ const Index = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
         >
-          Navigate your path to clarity, purpose, and transformation through ancient wisdom and modern insight
+          Your Trusted Partner in Strategic Consulting. Whether you're expanding into new markets, restructuring operations, or scaling with purpose — our bespoke strategies ensure your journey is refined and results-driven.
         </motion.p>
         
         <motion.div
@@ -90,7 +92,7 @@ const Index = () => {
     const isInView = useInView(ref, { once: true });
     
     return (
-      <section ref={ref} className="min-h-screen flex items-center py-20 bg-gradient-midnight relative overflow-hidden" data-section="1">
+      <section ref={ref} className="min-h-screen flex items-center py-20 bg-gradient-connectivity/30 relative overflow-hidden" data-section="1">
         {/* Background gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-background/50 via-transparent to-background/50" />
         <div className="container mx-auto px-4 relative z-10">
@@ -105,7 +107,7 @@ const Index = () => {
               <motion.div variants={fadeInUp}>
                 <h2 className="text-5xl md:text-6xl font-satoshi font-black text-foreground mb-6">
                   Your Guide to
-                  <span className="bg-gradient-golden bg-clip-text text-transparent"> Inner Compass</span>
+                  <span className="bg-gradient-aurora bg-clip-text text-transparent"> Strategic Excellence</span>
                 </h2>
                 <p className="text-lg text-muted-foreground font-inter leading-relaxed">
                   In a world of endless choices and distractions, finding your true path can feel overwhelming. 

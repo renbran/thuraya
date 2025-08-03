@@ -35,6 +35,7 @@ export default {
 					start: 'hsl(var(--aurora-start))',
 					end: 'hsl(var(--aurora-end))',
 				},
+				mystic: 'hsl(var(--mystic-purple))',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -73,6 +74,7 @@ export default {
 				'gradient-aurora': 'var(--gradient-aurora)',
 				'gradient-midnight': 'var(--gradient-midnight)',
 				'gradient-golden': 'var(--gradient-golden)',
+				'gradient-connectivity': 'var(--gradient-connectivity)',
 			},
 			boxShadow: {
 				'glow': 'var(--shadow-glow)',

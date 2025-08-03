@@ -8,14 +8,15 @@
 
 @layer base {
   :root {
-    /* THURAYA PATH Core Colors */
+    /* THURAYA PATH Core Colors - Matching Email Template */
     --midnight: 240 20% 8%;         /* Deep spiritual night */
-    --golden: 38 100% 60%;          /* Sacred golden light */
+    --golden: 35 100 60;            /* #ffb347 equivalent */
     --frost: 210 15% 92%;           /* Pure clarity */
     
-    /* Spiritual Gradient Colors */
-    --aurora-start: 280 100% 60%;   /* Mystical purple */
-    --aurora-end: 200 100% 60%;     /* Transcendent cyan */
+    /* Email Template Gradient Colors */
+    --aurora-start: 52 100 60;      /* #ffcc33 equivalent */
+    --aurora-end: 200 100 66;       /* #00cfff equivalent */
+    --mystic-purple: 253 42 95;     /* #7a4ef3 equivalent */
     
     /* System Colors - Dark Theme */
     --background: var(--midnight);
@@ -48,10 +49,11 @@
     
     --radius: 1rem;
     
-    /* Gradients */
-    --gradient-aurora: linear-gradient(135deg, hsl(var(--aurora-start)), hsl(var(--aurora-end)));
+    /* Gradients - Matching Email Template */
+    --gradient-aurora: linear-gradient(135deg, hsl(var(--golden)), hsl(var(--aurora-start)), hsl(var(--aurora-end)), hsl(var(--mystic-purple)));
     --gradient-midnight: linear-gradient(180deg, hsl(var(--midnight)), hsl(240 20% 12%));
-    --gradient-golden: linear-gradient(135deg, hsl(38 100% 60%), hsl(45 100% 70%));
+    --gradient-golden: linear-gradient(135deg, hsl(var(--golden)), hsl(var(--aurora-start)));
+    --gradient-connectivity: linear-gradient(45deg, hsl(var(--golden)), hsl(var(--aurora-end)), hsl(var(--mystic-purple)));
     
     /* Shadows */
     --shadow-glow: 0 0 40px hsl(var(--golden) / 0.4);
