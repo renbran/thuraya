@@ -7,7 +7,7 @@ import { CountUpCard } from "@/components/CountUpCard";
 import { ScrollIndicator } from "@/components/ScrollIndicator";
 import { CTAButton } from "@/components/CTAButton";
 import { fadeInUp, staggerContainer, slideInLeft, slideInRight } from "@/lib/variants";
-import thurayaLogo from "@/assets/thuraya-logo-transparent.png";
+import thurayaLogo from "@/assets/thuraya-logo-symbol.png";
 import { Calendar, Users, Heart, Star, ArrowRight, Compass, Eye, Lightbulb } from "lucide-react";
 
 const Index = () => {
