@@ -73,7 +73,7 @@ const OdooTestPage = () => {
         tag_ids: 'Webhook Test',
       };
 
-      const response = await fetch('https://tachimao.com/web/hook/ce48db03-6320-4728-afe4-fc1c1d61388e', {
+      const response = await fetch('https://coatest1.cloudpepper.site/web/hook/44b43f0c-2748-4024-a4e4-afe6609175a0', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ const OdooTestPage = () => {
         message: 'Test webhook integration'
       };
 
-      const response2 = await fetch('https://tachimao.com/web/hook/ce48db03-6320-4728-afe4-fc1c1d61388e', {
+      const response2 = await fetch('https://coatest1.cloudpepper.site/web/hook/44b43f0c-2748-4024-a4e4-afe6609175a0', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -127,7 +127,7 @@ const OdooTestPage = () => {
       formData.append('email', 'test@tachimao.com');
       formData.append('message', 'Test webhook integration');
 
-      const response3 = await fetch('https://tachimao.com/web/hook/ce48db03-6320-4728-afe4-fc1c1d61388e', {
+      const response3 = await fetch('https://coatest1.cloudpepper.site/web/hook/44b43f0c-2748-4024-a4e4-afe6609175a0', {
         method: 'POST',
         body: formData,
       });
@@ -166,11 +166,11 @@ const OdooTestPage = () => {
       
       <div style={{ marginBottom: '20px' }}>
         <h2>Database Configuration:</h2>
-        <p><strong>URL:</strong> https://tachimao.com</p>
-        <p><strong>Database UUID:</strong> 7f1b2e28-488e-11f0-bb6d-02420a050008</p>
-        <p><strong>Username:</strong> ceo@tachimao.com</p>
-        <p><strong>API Key:</strong> 94b2d780a6f14edf16a16cc9fa835b6752ae3eca</p>
-        <p><strong>Webhook URL:</strong> https://tachimao.com/web/hook/ce48db03-6320-4728-afe4-fc1c1d61388e</p>
+        <p><strong>URL:</strong> https://coatest1.cloudpepper.site/</p>
+        <p><strong>Database Name:</strong> coatest1</p>
+        <p><strong>Username:</strong> salescompliance@osusproperties.com</p>
+        <p><strong>Password:</strong> 8586583</p>
+        <p><strong>Webhook URL:</strong> https://coatest1.cloudpepper.site/web/hook/44b43f0c-2748-4024-a4e4-afe6609175a0</p>
       </div>
 
       <div style={{ marginBottom: '20px' }}>

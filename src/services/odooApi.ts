@@ -29,23 +29,22 @@ class OdooApiService {
 
   constructor() {
     this.config = {
-      url: 'https://tachimao.com',
-      database: '7f1b2e28-488e-11f0-bb6d-02420a050008', // Using UUID for precise database identification
-      username: 'ceo@tachimao.com',
-      apiKey: '94b2d780a6f14edf16a16cc9fa835b6752ae3eca'
+      url: 'https://coatest1.cloudpepper.site',
+      database: 'coatest1',
+      username: 'salescompliance@osusproperties.com',
+      apiKey: '8586583' // Using password for now, can be updated to API key later
     };
   }
 
-  // Authenticate with Odoo using API key
+  // Authenticate with Odoo using password
   private async authenticate(): Promise<boolean> {
     try {
-      console.log('Attempting Odoo authentication with API key...');
+      console.log('Attempting Odoo authentication with password...');
       
       const response = await fetch(`${this.config.url}/web/session/authenticate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.config.apiKey}`,
         },
         body: JSON.stringify({
           jsonrpc: '2.0',
@@ -53,7 +52,7 @@ class OdooApiService {
           params: {
             db: this.config.database,
             login: this.config.username,
-            password: this.config.apiKey, // Use API key as password
+            password: this.config.apiKey, // Using password
           },
           id: Math.random(),
         }),
@@ -68,8 +67,8 @@ class OdooApiService {
       }
       
       console.error('Odoo authentication failed:', data);
-      console.error('Using database UUID:', this.config.database);
-      console.error('Using API key:', this.config.apiKey.substring(0, 8) + '...');
+      console.error('Using database:', this.config.database);
+      console.error('Using credentials for:', this.config.username);
       return false;
     } catch (error) {
       console.error('Odoo authentication error:', error);
