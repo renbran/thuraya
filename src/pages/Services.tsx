@@ -10,7 +10,7 @@ const Services = () => {
   const [roiInputs, setRoiInputs] = useState({
     employees: 100,
     currentEfficiency: 70,
-    hourlyRate: 50
+    hourlyRate: 184 // 50 USD = 184 AED
   });
 
   const services = [
@@ -88,8 +88,8 @@ const Services = () => {
     {
       name: "Starter",
       description: "Perfect for growing businesses",
-      monthlyPrice: 2500,
-      annualPrice: 25000,
+      monthlyPrice: 9175, // 2500 USD = 9,175 AED
+      annualPrice: 91750, // 25000 USD = 91,750 AED
       features: [
         "Basic AI analytics",
         "Up to 5 system integrations",
@@ -102,8 +102,8 @@ const Services = () => {
     {
       name: "Growth",
       description: "Most popular for mid-size companies",
-      monthlyPrice: 7500,
-      annualPrice: 75000,
+      monthlyPrice: 27525, // 7500 USD = 27,525 AED
+      annualPrice: 275250, // 75000 USD = 275,250 AED
       features: [
         "Advanced AI analytics",
         "Unlimited integrations",
@@ -118,8 +118,8 @@ const Services = () => {
     {
       name: "Enterprise",
       description: "Full-scale transformation",
-      monthlyPrice: 15000,
-      annualPrice: 150000,
+      monthlyPrice: 55050, // 15000 USD = 55,050 AED
+      annualPrice: 550500, // 150000 USD = 550,500 AED
       features: [
         "Enterprise AI suite",
         "Custom model development",
@@ -284,22 +284,22 @@ const Services = () => {
                         
                         <div>
                           <label className="block text-sm font-inter text-muted-foreground mb-2">
-                            Average Hourly Rate ($)
+                            Average Hourly Rate (AED)
                           </label>
                           <input
                             type="range"
-                            min="25"
-                            max="150"
+                            min="92"
+                            max="550"
                             value={roiInputs.hourlyRate}
                             onChange={(e) => setRoiInputs({...roiInputs, hourlyRate: parseInt(e.target.value)})}
                             className="w-full"
                           />
-                          <span className="text-foreground font-bold">${roiInputs.hourlyRate}</span>
+                          <span className="text-foreground font-bold">AED {roiInputs.hourlyRate}</span>
                         </div>
                         
                         <div className="bg-gradient-aurora rounded-xl p-6 text-center">
                           <div className="text-3xl font-satoshi font-black text-midnight mb-2">
-                            ${calculateROI().toLocaleString()}
+                            AED {calculateROI().toLocaleString()}
                           </div>
                           <div className="text-midnight/80 font-inter">
                             Estimated Monthly Savings
@@ -381,7 +381,7 @@ const Services = () => {
                   </p>
                   
                   <div className="text-4xl font-satoshi font-black text-foreground">
-                    ${(selectedPricing === 'monthly' ? tier.monthlyPrice : tier.annualPrice / 12).toLocaleString()}
+                    AED {(selectedPricing === 'monthly' ? tier.monthlyPrice : tier.annualPrice / 12).toLocaleString()}
                     <span className="text-lg text-muted-foreground font-normal">/month</span>
                   </div>
                   {selectedPricing === 'annual' && (

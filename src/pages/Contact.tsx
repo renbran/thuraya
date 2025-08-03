@@ -212,9 +212,9 @@ const Contact = () => {
                   title="Select your budget range"
                 >
                   <option value="">Select Budget Range (Optional)</option>
-                  <option value="under-25k">Under $25k</option>
-                  <option value="25k-100k">$25k - $100k</option>
-                  <option value="over-100k">Over $100k</option>
+                  <option value="under-92k">Under AED 92k</option>
+                  <option value="92k-367k">AED 92k - 367k</option>
+                  <option value="over-367k">Over AED 367k</option>
                   <option value="consultation">Just looking for consultation</option>
                 </select>
                 <textarea 
