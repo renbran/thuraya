@@ -2,7 +2,7 @@ interface OdooConfig {
   url: string;
   database: string;
   username: string;
-  password: string;
+  apiKey: string;
 }
 
 interface LeadData {
@@ -32,19 +32,20 @@ class OdooApiService {
       url: 'https://tachimao.com',
       database: '7f1b2e28-488e-11f0-bb6d-02420a050008', // Using UUID for precise database identification
       username: 'ceo@tachimao.com',
-      password: '8586583'
+      apiKey: '94b2d780a6f14edf16a16cc9fa835b6752ae3eca'
     };
   }
 
-  // Authenticate with Odoo
+  // Authenticate with Odoo using API key
   private async authenticate(): Promise<boolean> {
     try {
-      console.log('Attempting Odoo authentication...');
+      console.log('Attempting Odoo authentication with API key...');
       
       const response = await fetch(`${this.config.url}/web/session/authenticate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.config.apiKey}`,
         },
         body: JSON.stringify({
           jsonrpc: '2.0',
@@ -52,7 +53,7 @@ class OdooApiService {
           params: {
             db: this.config.database,
             login: this.config.username,
-            password: this.config.password,
+            password: this.config.apiKey, // Use API key as password
           },
           id: Math.random(),
         }),
@@ -68,6 +69,7 @@ class OdooApiService {
       
       console.error('Odoo authentication failed:', data);
       console.error('Using database UUID:', this.config.database);
+      console.error('Using API key:', this.config.apiKey.substring(0, 8) + '...');
       return false;
     } catch (error) {
       console.error('Odoo authentication error:', error);
@@ -110,6 +112,7 @@ class OdooApiService {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.config.apiKey}`,
           'Cookie': `session_id=${this.sessionId}`,
         },
         body: JSON.stringify({
@@ -186,6 +189,7 @@ class OdooApiService {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Authorization': `Bearer ${this.config.apiKey}`,
           'Cookie': `session_id=${this.sessionId}`,
         },
         body: JSON.stringify({
@@ -220,6 +224,7 @@ class OdooApiService {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.config.apiKey}`,
             'Cookie': `session_id=${this.sessionId}`,
           },
           body: JSON.stringify({

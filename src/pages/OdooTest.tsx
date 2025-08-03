@@ -64,6 +64,7 @@ const OdooTestPage = () => {
         <p><strong>URL:</strong> https://tachimao.com</p>
         <p><strong>Database UUID:</strong> 7f1b2e28-488e-11f0-bb6d-02420a050008</p>
         <p><strong>Username:</strong> ceo@tachimao.com</p>
+        <p><strong>API Key:</strong> 94b2d780a6f14edf16a16cc9fa835b6752ae3eca</p>
       </div>
 
       <div style={{ marginBottom: '20px' }}>
