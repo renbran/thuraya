@@ -59,6 +59,9 @@ const OdooTestPage = () => {
     setIsLoading(true);
     
     try {
+      // Test 1: Try the original data structure
+      console.log('Testing webhook with original data structure...');
+      
       const webhookData = {
         name: 'Test Lead - Webhook Integration',
         email_from: 'test@tachimao.com',
@@ -74,27 +77,83 @@ const OdooTestPage = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify(webhookData),
       });
 
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+
       if (response.ok) {
         const responseData = await response.text();
+        console.log('Success response:', responseData);
         setTestResult({
           success: true,
           message: `Webhook test successful! Response: ${responseData}`,
         });
-      } else {
-        const errorText = await response.text();
-        setTestResult({
-          success: false,
-          message: `Webhook test failed with status ${response.status}: ${errorText}`,
-        });
+        return;
       }
-    } catch (error) {
+
+      // Test 2: Try simplified structure
+      console.log('Trying simplified data structure...');
+      const simplifiedData = {
+        name: 'Test Lead',
+        email: 'test@tachimao.com',
+        message: 'Test webhook integration'
+      };
+
+      const response2 = await fetch('https://tachimao.com/web/hook/ce48db03-6320-4728-afe4-fc1c1d61388e', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(simplifiedData),
+      });
+
+      if (response2.ok) {
+        const responseData2 = await response2.text();
+        setTestResult({
+          success: true,
+          message: `Simplified webhook test successful! Response: ${responseData2}`,
+        });
+        return;
+      }
+
+      // Test 3: Try form data instead of JSON
+      console.log('Trying form data...');
+      const formData = new FormData();
+      formData.append('name', 'Test Lead');
+      formData.append('email', 'test@tachimao.com');
+      formData.append('message', 'Test webhook integration');
+
+      const response3 = await fetch('https://tachimao.com/web/hook/ce48db03-6320-4728-afe4-fc1c1d61388e', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response3.ok) {
+        const responseData3 = await response3.text();
+        setTestResult({
+          success: true,
+          message: `Form data test successful! Response: ${responseData3}`,
+        });
+        return;
+      }
+
+      // All tests failed
+      const errorText = await response.text();
+      console.error('All webhook tests failed. Last error:', errorText);
       setTestResult({
         success: false,
-        message: `Webhook test failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        message: `All webhook tests failed. Status: ${response.status}, Error: ${errorText}`,
+      });
+
+    } catch (error) {
+      console.error('Webhook test error:', error);
+      setTestResult({
+        success: false,
+        message: `Webhook test failed: ${error instanceof Error ? error.message : 'Unknown error'}. Check console for details.`,
       });
     } finally {
       setIsLoading(false);
