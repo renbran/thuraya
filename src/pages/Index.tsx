@@ -90,8 +90,10 @@ const Index = () => {
     const isInView = useInView(ref, { once: true });
     
     return (
-      <section ref={ref} className="min-h-screen flex items-center py-20" data-section="1">
-        <div className="container mx-auto px-4">
+      <section ref={ref} className="min-h-screen flex items-center py-20 bg-gradient-midnight relative overflow-hidden" data-section="1">
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background/50 via-transparent to-background/50" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left side - Content */}
             <motion.div
@@ -207,8 +209,10 @@ const Index = () => {
     ];
     
     return (
-      <section ref={ref} className="py-20" data-section="2">
-        <div className="container mx-auto px-4">
+      <section ref={ref} className="py-20 bg-gradient-golden/10 relative overflow-hidden" data-section="2">
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-golden/5 via-transparent to-aurora-start/5" />
+        <div className="container mx-auto px-4 relative z-10">
           <motion.div
             className="text-center mb-16"
             initial={{ opacity: 0, y: 50 }}
@@ -367,8 +371,10 @@ const Index = () => {
     const isInView = useInView(ref, { once: true });
     
     return (
-      <section ref={ref} className="py-20" data-section="4">
-        <div className="container mx-auto px-4">
+      <section ref={ref} className="py-20 bg-gradient-aurora/10 relative overflow-hidden" data-section="4">
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-aurora-start/5 via-transparent to-aurora-end/5" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <CountUpCard
               title="Lives Transformed"
@@ -400,8 +406,10 @@ const Index = () => {
     const isInView = useInView(ref, { once: true });
     
     return (
-      <section ref={ref} className="py-20" data-section="5">
-        <div className="container mx-auto px-4 text-center">
+      <section ref={ref} className="py-20 bg-gradient-midnight relative overflow-hidden" data-section="5">
+        {/* Background gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-background/30 via-transparent to-background/30" />
+        <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
             className="bg-gradient-golden rounded-3xl p-16 relative overflow-hidden max-w-4xl mx-auto"
             initial={{ opacity: 0, scale: 0.9 }}
