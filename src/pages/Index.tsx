@@ -272,7 +272,10 @@ const Index = () => {
                   ))}
                 </ul>
                 
-                <button className="mt-6 text-golden font-medium hover:text-golden/80 transition-colors flex items-center group">
+                <button 
+                  className="mt-6 text-golden font-medium hover:text-golden/80 transition-colors flex items-center group"
+                  aria-label="Learn more about this service"
+                >
                   Learn More
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </button>
@@ -363,13 +366,15 @@ const Index = () => {
               
               {/* Navigation dots */}
               <div className="flex justify-center space-x-2 mt-8">
-                {testimonials.map((_, index) => (
+                {testimonials.map((testimonial, index) => (
                   <button
                     key={index}
                     className={`w-3 h-3 rounded-full transition-colors ${
                       index === activeTestimonial ? 'bg-golden' : 'bg-muted'
                     }`}
                     onClick={() => setActiveTestimonial(index)}
+                    aria-label={`View testimonial from ${testimonial.name} (${index + 1} of ${testimonials.length})`}
+                    aria-pressed={index === activeTestimonial ? "true" : "false"}
                   />
                 ))}
               </div>

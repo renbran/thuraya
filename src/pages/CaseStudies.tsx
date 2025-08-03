@@ -318,6 +318,7 @@ const CaseStudies = () => {
               <button
                 onClick={() => setSelectedCase(null)}
                 className="absolute top-4 right-4 bg-midnight/80 text-foreground p-2 rounded-full hover:bg-midnight transition-colors"
+                aria-label="Close case study details"
               >
                 <X className="w-6 h-6" />
               </button>
