@@ -27,10 +27,10 @@ const OdooTestPage = () => {
     
     try {
       const testLead = {
-        name: 'Test Lead - Website Integration',
+        name: 'Test Lead - API Integration',
         email_from: 'test@tachimao.com',
         contact_name: 'Test User',
-        description: 'This is a test lead created to verify the Odoo integration is working correctly.',
+        description: 'This is a test lead created to verify the Odoo API integration is working correctly.',
         source_id: 1,
         medium_id: 1,
         website: 'https://renbran.github.io/thuraya/',
@@ -55,6 +55,52 @@ const OdooTestPage = () => {
     }
   };
 
+  const testWebhook = async () => {
+    setIsLoading(true);
+    
+    try {
+      const webhookData = {
+        name: 'Test Lead - Webhook Integration',
+        email_from: 'test@tachimao.com',
+        contact_name: 'Test User',
+        description: 'This is a test lead created to verify the webhook integration is working correctly.',
+        website: 'https://renbran.github.io/thuraya/',
+        source_id: 'Website Test',
+        medium_id: 'Digital',
+        tag_ids: 'Webhook Test',
+      };
+
+      const response = await fetch('https://tachimao.com/web/hook/ce48db03-6320-4728-afe4-fc1c1d61388e', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(webhookData),
+      });
+
+      if (response.ok) {
+        const responseData = await response.text();
+        setTestResult({
+          success: true,
+          message: `Webhook test successful! Response: ${responseData}`,
+        });
+      } else {
+        const errorText = await response.text();
+        setTestResult({
+          success: false,
+          message: `Webhook test failed with status ${response.status}: ${errorText}`,
+        });
+      }
+    } catch (error) {
+      setTestResult({
+        success: false,
+        message: `Webhook test failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
       <h1>Odoo CRM Integration Test</h1>
@@ -65,6 +111,7 @@ const OdooTestPage = () => {
         <p><strong>Database UUID:</strong> 7f1b2e28-488e-11f0-bb6d-02420a050008</p>
         <p><strong>Username:</strong> ceo@tachimao.com</p>
         <p><strong>API Key:</strong> 94b2d780a6f14edf16a16cc9fa835b6752ae3eca</p>
+        <p><strong>Webhook URL:</strong> https://tachimao.com/web/hook/ce48db03-6320-4728-afe4-fc1c1d61388e</p>
       </div>
 
       <div style={{ marginBottom: '20px' }}>
@@ -94,9 +141,25 @@ const OdooTestPage = () => {
             border: 'none',
             borderRadius: '5px',
             cursor: isLoading ? 'not-allowed' : 'pointer',
+            marginRight: '10px',
           }}
         >
-          {isLoading ? 'Creating...' : 'Test Lead Creation'}
+          {isLoading ? 'Creating...' : 'Test API Lead Creation'}
+        </button>
+
+        <button 
+          onClick={testWebhook}
+          disabled={isLoading}
+          style={{
+            padding: '10px 20px',
+            backgroundColor: '#17a2b8',
+            color: 'white',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: isLoading ? 'not-allowed' : 'pointer',
+          }}
+        >
+          {isLoading ? 'Testing...' : 'Test Webhook'}
         </button>
       </div>
 

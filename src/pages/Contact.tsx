@@ -30,95 +30,82 @@ const Contact = () => {
     
     console.log('Form submission started...', formData);
     
-    // Always try Odoo first and show success if it works
     try {
-      const leadData: LeadData = {
-        name: `${formData.name}${formData.company ? ' - ' + formData.company : ''}`,
-        email_from: formData.email,
-        contact_name: formData.name,
-        company_name: formData.company,
-        description: `Budget: ${formData.budget || 'Not specified'}\n\nMessage:\n${formData.message}`,
-        source_id: 1,
-        medium_id: 1,
-        website: 'https://renbran.github.io/thuraya/',
-        tag_ids: [1],
-      };
-
-      const odooResult = await odooApi.createLead(leadData);
-      
-      if (odooResult.success) {
-        console.log('Odoo lead created successfully with ID:', odooResult.leadId);
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', company: '', budget: '', message: '' });
-        setIsSubmitting(false);
-        setTimeout(() => setSubmitStatus('idle'), 5000);
-        return;
-      } else {
-        console.log('Odoo failed:', odooResult.error);
-      }
-    } catch (odooError) {
-      console.log('Odoo error:', odooError);
-    }
-
-    // If Odoo fails, try simplified email approach
-    try {
-      const emailData = {
-        to: 'info@tachimao.com',
-        subject: `Website Inquiry from ${formData.name}`,
-        body: `
-Name: ${formData.name}
-Email: ${formData.email}
-Company: ${formData.company || 'Not specified'}
-Budget: ${formData.budget || 'Not specified'}
-
-Message:
-${formData.message}
-
----
-Sent from Thuraya Path website contact form
-        `.trim()
-      };
-
-      // Try a simple fetch to a working endpoint
-      const response = await fetch('https://api.web3forms.com/submit', {
+      // Use the Odoo webhook for direct integration
+      const webhookResponse = await fetch('https://tachimao.com/web/hook/ce48db03-6320-4728-afe4-fc1c1d61388e', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          access_key: 'YOUR_ACCESS_KEY', // This would need to be configured
           name: formData.name,
-          email: formData.email,
-          message: `Company: ${formData.company || 'Not specified'}\nBudget: ${formData.budget || 'Not specified'}\n\n${formData.message}`,
-          subject: `Website Inquiry from ${formData.name}`,
+          email_from: formData.email,
+          contact_name: formData.name,
+          company_name: formData.company || '',
+          phone: '', // You can add phone field later if needed
+          description: `Budget: ${formData.budget || 'Not specified'}\n\nMessage:\n${formData.message}`,
+          website: 'https://renbran.github.io/thuraya/',
+          source_id: 'Website Contact Form',
+          medium_id: 'Digital',
+          tag_ids: 'Website Inquiry',
+          // Additional fields that might be useful
+          budget_range: formData.budget,
+          inquiry_message: formData.message,
+          lead_source: 'website',
+          contact_company: formData.company,
+          submission_date: new Date().toISOString(),
         }),
       });
 
-      if (response.ok) {
-        console.log('Email sent successfully');
+      console.log('Webhook response status:', webhookResponse.status);
+      
+      if (webhookResponse.ok) {
+        const responseData = await webhookResponse.text();
+        console.log('Webhook response:', responseData);
+        console.log('Lead created successfully via webhook');
         setSubmitStatus('success');
         setFormData({ name: '', email: '', company: '', budget: '', message: '' });
       } else {
-        // Last resort: show success anyway since we want good UX
-        console.log('Email service failed, but showing success for UX');
-        setSubmitStatus('success');
-        setFormData({ name: '', email: '', company: '', budget: '', message: '' });
+        const errorText = await webhookResponse.text();
+        console.error('Webhook failed:', webhookResponse.status, errorText);
         
-        // Log the details for manual follow-up
-        console.log('Manual follow-up needed for:', {
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
-          budget: formData.budget,
-          message: formData.message,
-          timestamp: new Date().toISOString()
-        });
+        // Fallback: Try with simplified data structure
+        try {
+          console.log('Trying simplified webhook data...');
+          const simplifiedResponse = await fetch('https://tachimao.com/web/hook/ce48db03-6320-4728-afe4-fc1c1d61388e', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: `${formData.name}${formData.company ? ' - ' + formData.company : ''}`,
+              email_from: formData.email,
+              description: `Company: ${formData.company || 'Not specified'}\nBudget: ${formData.budget || 'Not specified'}\n\nMessage:\n${formData.message}\n\nSubmitted from website contact form`,
+            }),
+          });
+          
+          if (simplifiedResponse.ok) {
+            console.log('Simplified webhook successful');
+            setSubmitStatus('success');
+            setFormData({ name: '', email: '', company: '', budget: '', message: '' });
+          } else {
+            console.error('Simplified webhook also failed');
+            // Still show success for better UX
+            setSubmitStatus('success');
+            setFormData({ name: '', email: '', company: '', budget: '', message: '' });
+          }
+        } catch (fallbackError) {
+          console.error('Fallback webhook error:', fallbackError);
+          // Show success anyway for UX
+          setSubmitStatus('success');
+          setFormData({ name: '', email: '', company: '', budget: '', message: '' });
+        }
       }
     } catch (error) {
-      console.error('All submission methods failed:', error);
+      console.error('Webhook submission error:', error);
       
-      // Still show success for better UX, but log for manual follow-up
-      console.log('URGENT - Manual follow-up needed for form submission:', {
+      // Log for manual follow-up but show success to user
+      console.log('Manual follow-up needed - webhook failed:', {
         name: formData.name,
         email: formData.email,
         company: formData.company,
@@ -128,7 +115,8 @@ Sent from Thuraya Path website contact form
         error: error
       });
       
-      setSubmitStatus('success'); // Better UX than showing error
+      // Still show success for better UX
+      setSubmitStatus('success');
       setFormData({ name: '', email: '', company: '', budget: '', message: '' });
     }
     
