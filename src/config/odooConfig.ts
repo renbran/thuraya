@@ -3,8 +3,8 @@ export const ODOO_CONFIG = {
   // Your Odoo instance URL
   URL: 'https://tachimao.com',
   
-  // Database name (you may need to adjust this)
-  DATABASE: 'tachimao',
+  // Database UUID for precise identification
+  DATABASE: '7f1b2e28-488e-11f0-bb6d-02420a050008',
   
   // API credentials (in production, use environment variables)
   USERNAME: 'ceo@tachimao.com',

@@ -30,7 +30,7 @@ class OdooApiService {
   constructor() {
     this.config = {
       url: 'https://tachimao.com',
-      database: 'tachimao', // You may need to verify this database name
+      database: '7f1b2e28-488e-11f0-bb6d-02420a050008', // Using UUID for precise database identification
       username: 'ceo@tachimao.com',
       password: '8586583'
     };
@@ -39,6 +39,8 @@ class OdooApiService {
   // Authenticate with Odoo
   private async authenticate(): Promise<boolean> {
     try {
+      console.log('Attempting Odoo authentication...');
+      
       const response = await fetch(`${this.config.url}/web/session/authenticate`, {
         method: 'POST',
         headers: {
@@ -60,13 +62,16 @@ class OdooApiService {
       
       if (data.result && data.result.uid) {
         this.sessionId = data.result.session_id;
+        console.log('Odoo authentication successful. User ID:', data.result.uid);
         return true;
       }
       
       console.error('Odoo authentication failed:', data);
+      console.error('Using database UUID:', this.config.database);
       return false;
     } catch (error) {
       console.error('Odoo authentication error:', error);
+      console.error('Check if Odoo instance is accessible at:', this.config.url);
       return false;
     }
   }
@@ -201,6 +206,60 @@ class OdooApiService {
     } catch (error) {
       console.error(`Error fetching ${model} data:`, error);
       return [];
+    }
+  }
+
+  // Test connection to Odoo instance
+  async testConnection(): Promise<{ success: boolean; message: string; userInfo?: any }> {
+    try {
+      const authenticated = await this.authenticate();
+      
+      if (authenticated) {
+        // Try to get user information
+        const response = await fetch(`${this.config.url}/web/dataset/call_kw`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Cookie': `session_id=${this.sessionId}`,
+          },
+          body: JSON.stringify({
+            jsonrpc: '2.0',
+            method: 'call',
+            params: {
+              model: 'res.users',
+              method: 'read',
+              args: [[1], ['name', 'email', 'company_id']],
+              kwargs: {},
+            },
+            id: Math.random(),
+          }),
+        });
+
+        const data = await response.json();
+        
+        if (data.result && data.result.length > 0) {
+          return {
+            success: true,
+            message: 'Successfully connected to Odoo CRM',
+            userInfo: data.result[0],
+          };
+        } else {
+          return {
+            success: false,
+            message: 'Connected but unable to fetch user information',
+          };
+        }
+      } else {
+        return {
+          success: false,
+          message: 'Authentication failed. Please check credentials and database UUID.',
+        };
+      }
+    } catch (error) {
+      return {
+        success: false,
+        message: `Connection error: ${error instanceof Error ? error.message : 'Unknown error'}`,
+      };
     }
   }
 }
