@@ -88,8 +88,8 @@ const Services = () => {
     {
       name: "Starter",
       description: "Perfect for growing businesses",
-      monthlyPrice: 9175, // 2500 USD = 9,175 AED
-      annualPrice: 91750, // 25000 USD = 91,750 AED
+      monthlyPrice: 8999, // AED 8,999
+      annualPrice: 89990, // AED 89,990 (10 months price)
       features: [
         "Basic AI analytics",
         "Up to 5 system integrations",
@@ -100,10 +100,10 @@ const Services = () => {
       popular: false
     },
     {
-      name: "Growth",
+      name: "Silver",
       description: "Most popular for mid-size companies",
-      monthlyPrice: 27525, // 7500 USD = 27,525 AED
-      annualPrice: 275250, // 75000 USD = 275,250 AED
+      monthlyPrice: 26999, // AED 26,999
+      annualPrice: 269990, // AED 269,990 (10 months price)
       features: [
         "Advanced AI analytics",
         "Unlimited integrations",
@@ -118,8 +118,8 @@ const Services = () => {
     {
       name: "Enterprise",
       description: "Full-scale transformation",
-      monthlyPrice: 55050, // 15000 USD = 55,050 AED
-      annualPrice: 550500, // 150000 USD = 550,500 AED
+      monthlyPrice: 49999, // AED 49,999
+      annualPrice: 499990, // AED 499,990 (10 months price)
       features: [
         "Enterprise AI suite",
         "Custom model development",
