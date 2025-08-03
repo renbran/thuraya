@@ -3,12 +3,7 @@ import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-interface NetworkNodeProps {
-  position: [number, number, number];
-  connections: number[];
-}
-
-function NetworkNode({ position, connections }: NetworkNodeProps) {
+function NetworkNode({ position }: { position: [number, number, number] }) {
   const meshRef = useRef<THREE.Mesh>(null);
   
   useFrame((state) => {
@@ -23,13 +18,11 @@ function NetworkNode({ position, connections }: NetworkNodeProps) {
 
   return (
     <mesh ref={meshRef} position={position}>
-      <sphereGeometry args={[0.05, 16, 16]} />
-      <meshStandardMaterial
+      <sphereGeometry args={[0.02, 8, 8]} />
+      <meshBasicMaterial
         color="#ffb347"
-        emissive="#ffb347"
-        emissiveIntensity={0.2}
         transparent
-        opacity={0.8}
+        opacity={0.6}
       />
     </mesh>
   );
@@ -38,59 +31,59 @@ function NetworkNode({ position, connections }: NetworkNodeProps) {
 function ConnectionLines() {
   const linesRef = useRef<THREE.Group>(null);
   
-  const nodes = useMemo(() => {
-    const positions: [number, number, number][] = [];
-    for (let i = 0; i < 20; i++) {
-      positions.push([
-        (Math.random() - 0.5) * 8,
+  const { nodes, lines } = useMemo(() => {
+    const nodePositions: [number, number, number][] = [];
+    for (let i = 0; i < 15; i++) {
+      nodePositions.push([
         (Math.random() - 0.5) * 6,
-        (Math.random() - 0.5) * 4
+        (Math.random() - 0.5) * 4,
+        (Math.random() - 0.5) * 3
       ]);
     }
-    return positions;
-  }, []);
 
-  const connections = useMemo(() => {
-    const lines: JSX.Element[] = [];
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
+    const lineObjects: THREE.Line[] = [];
+    for (let i = 0; i < nodePositions.length; i++) {
+      for (let j = i + 1; j < nodePositions.length; j++) {
         const distance = Math.sqrt(
-          Math.pow(nodes[i][0] - nodes[j][0], 2) +
-          Math.pow(nodes[i][1] - nodes[j][1], 2) +
-          Math.pow(nodes[i][2] - nodes[j][2], 2)
+          Math.pow(nodePositions[i][0] - nodePositions[j][0], 2) +
+          Math.pow(nodePositions[i][1] - nodePositions[j][1], 2) +
+          Math.pow(nodePositions[i][2] - nodePositions[j][2], 2)
         );
         
-        if (distance < 2.5) {
+        if (distance < 2) {
           const points = [
-            new THREE.Vector3(...nodes[i]),
-            new THREE.Vector3(...nodes[j])
+            new THREE.Vector3(...nodePositions[i]),
+            new THREE.Vector3(...nodePositions[j])
           ];
           const geometry = new THREE.BufferGeometry().setFromPoints(points);
-          
-          lines.push(
-            <primitive key={`${i}-${j}`} object={new THREE.Line(geometry, new THREE.LineBasicMaterial({
-              color: "#00cfff",
-              transparent: true,
-              opacity: 0.3
-            }))} />
-          );
+          const material = new THREE.LineBasicMaterial({
+            color: "#00cfff",
+            transparent: true,
+            opacity: 0.2
+          });
+          const line = new THREE.Line(geometry, material);
+          lineObjects.push(line);
         }
       }
     }
-    return lines;
-  }, [nodes]);
+    
+    return { nodes: nodePositions, lines: lineObjects };
+  }, []);
 
   useFrame((state) => {
     if (linesRef.current) {
-      linesRef.current.rotation.y = state.clock.elapsedTime * 0.1;
+      linesRef.current.rotation.y = state.clock.elapsedTime * 0.05;
+      linesRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.02) * 0.1;
     }
   });
 
   return (
     <group ref={linesRef}>
-      {connections}
+      {lines.map((line, index) => (
+        <primitive key={index} object={line} />
+      ))}
       {nodes.map((position, index) => (
-        <NetworkNode key={index} position={position} connections={[]} />
+        <NetworkNode key={index} position={position} />
       ))}
     </group>
   );
@@ -100,19 +93,19 @@ function ParticleSystem() {
   const particlesRef = useRef<THREE.Points>(null);
   
   const particles = useMemo(() => {
-    const positions = new Float32Array(100 * 3);
-    for (let i = 0; i < 100; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 10;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 8;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 6;
+    const positions = new Float32Array(50 * 3);
+    for (let i = 0; i < 50; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 8;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 6;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 4;
     }
     return positions;
   }, []);
 
   useFrame((state) => {
     if (particlesRef.current) {
-      particlesRef.current.rotation.x = state.clock.elapsedTime * 0.05;
-      particlesRef.current.rotation.y = state.clock.elapsedTime * 0.02;
+      particlesRef.current.rotation.x = state.clock.elapsedTime * 0.02;
+      particlesRef.current.rotation.y = state.clock.elapsedTime * 0.01;
     }
   });
 
@@ -128,9 +121,9 @@ function ParticleSystem() {
       </bufferGeometry>
       <pointsMaterial
         color="#7a4ef3"
-        size={0.02}
+        size={0.01}
         transparent
-        opacity={0.6}
+        opacity={0.4}
       />
     </points>
   );
@@ -138,14 +131,15 @@ function ParticleSystem() {
 
 export function NetworkBackground() {
   return (
-    <div className="absolute inset-0 -z-10">
+    <div className="absolute inset-0 -z-10 opacity-30">
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 75 }}
+        camera={{ position: [0, 0, 4], fov: 60 }}
         style={{ background: 'transparent' }}
+        gl={{ alpha: true, antialias: true }}
       >
-        <ambientLight intensity={0.3} />
-        <pointLight position={[10, 10, 10]} intensity={0.5} color="#ffb347" />
-        <pointLight position={[-10, -10, -10]} intensity={0.3} color="#00cfff" />
+        <ambientLight intensity={0.2} />
+        <pointLight position={[5, 5, 5]} intensity={0.3} color="#ffb347" />
+        <pointLight position={[-5, -5, -5]} intensity={0.2} color="#00cfff" />
         
         <ConnectionLines />
         <ParticleSystem />

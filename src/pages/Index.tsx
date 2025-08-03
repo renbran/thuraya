@@ -7,7 +7,7 @@ import { CountUpCard } from "@/components/CountUpCard";
 import { ScrollIndicator } from "@/components/ScrollIndicator";
 import { CTAButton } from "@/components/CTAButton";
 import { fadeInUp, staggerContainer, slideInLeft, slideInRight } from "@/lib/variants";
-import thurayaLogo from "@/assets/thuraya-logo-symbol.png";
+import thurayaLogo from "@/assets/thuraya-logo-transparent.png";
 import { Calendar, Users, Heart, Star, ArrowRight, Compass, Eye, Lightbulb } from "lucide-react";
 
 const Index = () => {
@@ -36,10 +36,22 @@ const Index = () => {
             alt="Thuraya Path Logo" 
             className="w-32 h-32 mx-auto mb-8 animate-float"
           />
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-satoshi font-black bg-gradient-aurora bg-clip-text text-transparent leading-tight mb-6">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-satoshi font-black leading-tight mb-6" 
+              style={{
+                background: 'linear-gradient(to right, #ffb347, #ffcc33, #00cfff, #7a4ef3)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}>
             THURAYA PATH
           </h1>
-          <p className="text-2xl md:text-3xl bg-gradient-aurora bg-clip-text text-transparent font-satoshi font-light tracking-wider">
+          <p className="text-2xl md:text-3xl font-satoshi font-bold tracking-wider"
+             style={{
+               background: 'linear-gradient(to right, #ffb347, #ffcc33, #00cfff, #7a4ef3)',
+               WebkitBackgroundClip: 'text',
+               WebkitTextFillColor: 'transparent',
+               backgroundClip: 'text'
+             }}>
             CONSULTANT
           </p>
         </motion.div>

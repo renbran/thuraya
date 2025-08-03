@@ -19,9 +19,9 @@ export function CTAButton({
   const baseClasses = "font-satoshi font-bold rounded-full transition-all duration-300 relative overflow-hidden group";
   
   const variantClasses = {
-    primary: "bg-golden text-midnight hover:shadow-glow",
-    secondary: "bg-gradient-aurora text-midnight hover:shadow-mystical",
-    outline: "border-2 border-golden text-golden hover:bg-golden hover:text-midnight hover:shadow-glow"
+    primary: "text-midnight font-bold" + " " + "bg-[linear-gradient(to_right,#ffb347,#00cfff,#7a4ef3)] hover:shadow-glow",
+    secondary: "bg-gradient-aurora text-midnight hover:shadow-mystical", 
+    outline: "border-2 text-frost hover:shadow-glow" + " " + "border-[linear-gradient(to_right,#ffb347,#00cfff,#7a4ef3)] bg-transparent hover:bg-[linear-gradient(to_right,#ffb347,#00cfff,#7a4ef3)] hover:text-midnight"
   };
   
   const sizeClasses = {
@@ -41,7 +41,8 @@ export function CTAButton({
     >
       <span className="relative z-10">{children}</span>
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-aurora-start to-aurora-end opacity-0 group-hover:opacity-20"
+        className="absolute inset-0 opacity-0 group-hover:opacity-20"
+        style={{ background: 'linear-gradient(to right, #ffb347, #00cfff, #7a4ef3)' }}
         initial={false}
         animate={{ opacity: 0 }}
         whileHover={{ opacity: 0.2 }}
