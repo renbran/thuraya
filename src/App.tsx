@@ -11,6 +11,7 @@ import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import Careers from "./pages/Careers";
 import NotFound from "./pages/NotFound";
+import JotFormChatbot from "./components/JotFormChatbot";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +20,13 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <JotFormChatbot 
+        enabled={true} 
+        skipWelcome={true} 
+        maximizable={true}
+        showDelay={3000}
+        trackLeads={true}
+      />
       <HashRouter>
         <Routes>
           <Route path="/" element={<Index />} />
