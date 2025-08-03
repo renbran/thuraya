@@ -90,20 +90,23 @@ const Services = () => {
       description: "Perfect for growing businesses",
       monthlyPrice: 8999, // AED 8,999
       annualPrice: 89990, // AED 89,990 (10 months price)
+      userLimit: "Up to 10 users",
       features: [
         "Basic AI analytics",
         "Up to 5 system integrations",
         "Standard monitoring",
         "Email support",
-        "Monthly reports"
+        "Monthly reports",
+        "Up to 10 users included"
       ],
       popular: false
     },
     {
       name: "Silver",
-      description: "Most popular for mid-size companies",
-      monthlyPrice: 26999, // AED 26,999
-      annualPrice: 269990, // AED 269,990 (10 months price)
+      description: "Most popular for mid-size companies (Monthly)",
+      monthlyPrice: 26999, // AED 26,999 per month
+      annualPrice: null, // Monthly only
+      userLimit: "Up to 25 users",
       features: [
         "Advanced AI analytics",
         "Unlimited integrations",
@@ -111,15 +114,17 @@ const Services = () => {
         "24/7 priority support",
         "Custom dashboards",
         "Predictive alerts",
-        "API access"
+        "API access",
+        "Up to 25 users included"
       ],
       popular: true
     },
     {
       name: "Enterprise",
-      description: "Full-scale transformation",
-      monthlyPrice: 49999, // AED 49,999
-      annualPrice: 499990, // AED 499,990 (10 months price)
+      description: "Full-scale transformation (Monthly)",
+      monthlyPrice: 49999, // AED 49,999 per month
+      annualPrice: null, // Monthly only
+      userLimit: "Up to 70 users",
       features: [
         "Enterprise AI suite",
         "Custom model development",
@@ -127,7 +132,8 @@ const Services = () => {
         "White-glove support",
         "Advanced security",
         "SLA guarantees",
-        "On-site training"
+        "On-site training",
+        "Up to 70 users included"
       ],
       popular: false
     }
@@ -349,6 +355,10 @@ const Services = () => {
                 <span className="text-aurora-start ml-1">(Save 17%)</span>
               </span>
             </div>
+            
+            <p className="text-center text-sm text-muted-foreground mb-8">
+              * Silver and Enterprise plans are monthly billing only
+            </p>
           </motion.div>
           
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -381,13 +391,28 @@ const Services = () => {
                   </p>
                   
                   <div className="text-4xl font-satoshi font-black text-foreground">
-                    AED {(selectedPricing === 'monthly' ? tier.monthlyPrice : tier.annualPrice / 12).toLocaleString()}
+                    AED {(
+                      selectedPricing === 'monthly' || !tier.annualPrice 
+                        ? tier.monthlyPrice 
+                        : Math.round(tier.annualPrice / 12)
+                    ).toLocaleString()}
                     <span className="text-lg text-muted-foreground font-normal">/month</span>
                   </div>
-                  {selectedPricing === 'annual' && (
+                  {selectedPricing === 'annual' && tier.annualPrice && (
                     <p className="text-sm text-aurora-start font-inter mt-2">
                       Billed annually
                     </p>
+                  )}
+                  {!tier.annualPrice && (
+                    <p className="text-sm text-muted-foreground font-inter mt-2">
+                      Monthly billing only
+                    </p>
+                  )}
+                  
+                  {tier.userLimit && (
+                    <div className="mt-3 text-sm font-satoshi font-bold text-aurora-start">
+                      {tier.userLimit}
+                    </div>
                   )}
                 </div>
                 
