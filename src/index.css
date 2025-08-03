@@ -2,20 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
-/* EAGER MARVEL Design System - Dark Sci-Fi Theme
-   Colors, fonts, spacing, animations for AI-powered business clarity
+/* THURAYA PATH Design System - Spiritual Guidance Theme
+   Colors, fonts, spacing, animations for spiritual consulting and guidance
 */
 
 @layer base {
   :root {
-    /* EAGER MARVEL Core Colors */
-    --midnight: 197 71% 5%;         /* #0B0C10 converted to HSL */
-    --photon: 328 100% 50%;         /* #FF007F */
-    --frost: 220 9% 92%;            /* #E4E6EB */
+    /* THURAYA PATH Core Colors */
+    --midnight: 240 20% 8%;         /* Deep spiritual night */
+    --golden: 38 100% 60%;          /* Sacred golden light */
+    --frost: 210 15% 92%;           /* Pure clarity */
     
-    /* Aurora Gradient Colors */
-    --aurora-start: 184 100% 50%;   /* #00F5FF */
-    --aurora-end: 252 69% 67%;      /* #7B68EE */
+    /* Spiritual Gradient Colors */
+    --aurora-start: 280 100% 60%;   /* Mystical purple */
+    --aurora-end: 200 100% 60%;     /* Transcendent cyan */
     
     /* System Colors - Dark Theme */
     --background: var(--midnight);
@@ -27,14 +27,14 @@
     --popover: 197 71% 8%;
     --popover-foreground: var(--frost);
     
-    --primary: var(--photon);
-    --primary-foreground: 0 0% 100%;
+    --primary: var(--golden);
+    --primary-foreground: var(--midnight);
     
-    --secondary: 197 20% 20%;
+    --secondary: 240 15% 25%;
     --secondary-foreground: var(--frost);
     
-    --muted: 197 15% 15%;
-    --muted-foreground: 220 9% 70%;
+    --muted: 240 10% 20%;
+    --muted-foreground: 210 10% 70%;
     
     --accent: var(--aurora-start);
     --accent-foreground: var(--midnight);
@@ -42,19 +42,20 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
     
-    --border: 197 20% 20%;
-    --input: 197 20% 15%;
-    --ring: var(--aurora-start);
+    --border: 240 15% 25%;
+    --input: 240 10% 15%;
+    --ring: var(--golden);
     
     --radius: 1rem;
     
     /* Gradients */
     --gradient-aurora: linear-gradient(135deg, hsl(var(--aurora-start)), hsl(var(--aurora-end)));
-    --gradient-midnight: linear-gradient(180deg, hsl(var(--midnight)), hsl(197 71% 8%));
+    --gradient-midnight: linear-gradient(180deg, hsl(var(--midnight)), hsl(240 20% 12%));
+    --gradient-golden: linear-gradient(135deg, hsl(38 100% 60%), hsl(45 100% 70%));
     
     /* Shadows */
-    --shadow-glow: 0 0 40px hsl(var(--aurora-start) / 0.3);
-    --shadow-photon: 0 10px 30px hsl(var(--photon) / 0.2);
+    --shadow-glow: 0 0 40px hsl(var(--golden) / 0.4);
+    --shadow-mystical: 0 10px 30px hsl(var(--aurora-start) / 0.3);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

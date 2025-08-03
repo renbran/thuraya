@@ -29,7 +29,7 @@ export default {
 			},
 			colors: {
 				midnight: 'hsl(var(--midnight))',
-				photon: 'hsl(var(--photon))',
+				golden: 'hsl(var(--golden))',
 				frost: 'hsl(var(--frost))',
 				aurora: {
 					start: 'hsl(var(--aurora-start))',
@@ -72,10 +72,11 @@ export default {
 			backgroundImage: {
 				'gradient-aurora': 'var(--gradient-aurora)',
 				'gradient-midnight': 'var(--gradient-midnight)',
+				'gradient-golden': 'var(--gradient-golden)',
 			},
 			boxShadow: {
 				'glow': 'var(--shadow-glow)',
-				'photon': 'var(--shadow-photon)',
+				'mystical': 'var(--shadow-mystical)',
 			},
 			spacing: {
 				'18': '4.5rem',

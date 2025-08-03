@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 interface CTAButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "outline";
   size?: "default" | "lg";
   className?: string;
 }
@@ -19,8 +19,9 @@ export function CTAButton({
   const baseClasses = "font-satoshi font-bold rounded-full transition-all duration-300 relative overflow-hidden group";
   
   const variantClasses = {
-    primary: "bg-photon text-white hover:shadow-photon",
-    secondary: "bg-gradient-aurora text-midnight hover:shadow-glow"
+    primary: "bg-golden text-midnight hover:shadow-glow",
+    secondary: "bg-gradient-aurora text-midnight hover:shadow-mystical",
+    outline: "border-2 border-golden text-golden hover:bg-golden hover:text-midnight hover:shadow-glow"
   };
   
   const sizeClasses = {
