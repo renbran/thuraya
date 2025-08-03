@@ -10,6 +10,7 @@ import CaseStudies from "./pages/CaseStudies";
 import Resources from "./pages/Resources";
 import Contact from "./pages/Contact";
 import Careers from "./pages/Careers";
+import OdooTest from "./pages/OdooTest";
 import NotFound from "./pages/NotFound";
 // import JotFormChatbot from "./components/JotFormChatbot";
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/resources" element={<Resources />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/odoo-test" element={<OdooTest />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
