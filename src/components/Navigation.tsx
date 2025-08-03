@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import thurayaLogo from "@/assets/thuraya-logo-symbol.png";
+import thurayaLogo from "@/assets/thuraya-logo-new.png";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
