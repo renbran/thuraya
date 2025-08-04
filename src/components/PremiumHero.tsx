@@ -89,7 +89,7 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
             transition={{ duration: 1, delay: 0.2 }}
           >
             <h1 className="text-hero font-satoshi font-black leading-none tracking-tight">
-              <span className="block text-white">{t("hero.headline").split(" ").slice(0, 2).join(" ")}</span>
+              <span className="block text-white">{(t("hero.headline") || "Navigate Your").split(" ").slice(0, 2).join(" ")}</span>
               <span 
                 className="block bg-gradient-thuraya bg-clip-text text-transparent animate-shimmer"
                 style={{
@@ -97,7 +97,7 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
                   backgroundImage: 'linear-gradient(90deg, #FFD700 0%, #00BFFF 25%, #8A2BE2 50%, #FFD700 75%, #00BFFF 100%)'
                 }}
               >
-                {t("hero.headline").split(" ").slice(2).join(" ")}
+                {(t("hero.headline") || "Digital Destiny").split(" ").slice(2).join(" ")}
               </span>
             </h1>
           </motion.div>
