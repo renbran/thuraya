@@ -26,6 +26,8 @@ export default {
 				satoshi: ['Satoshi', 'sans-serif'],
 				inter: ['Inter Variable', 'sans-serif'],
 				mono: ['JetBrains Mono', 'monospace'],
+				// Arabic font support
+				arabic: ['Noto Sans Arabic', 'Tajawal', 'Arial', 'sans-serif'],
 			},
 			colors: {
 				// Premium Thuraya Brand Colors

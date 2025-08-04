@@ -1,0 +1,188 @@
+/* RTL Support and Arabic Typography */
+
+/* RTL-specific styles */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .text-left {
+  text-align: right !important;
+}
+
+[dir="rtl"] .text-right {
+  text-align: left !important;
+}
+
+[dir="rtl"] .text-center {
+  text-align: center !important;
+}
+
+/* RTL Flexbox adjustments */
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .justify-start {
+  justify-content: flex-end;
+}
+
+[dir="rtl"] .justify-end {
+  justify-content: flex-start;
+}
+
+/* RTL margins and padding */
+[dir="rtl"] .ml-auto {
+  margin-left: unset;
+  margin-right: auto;
+}
+
+[dir="rtl"] .mr-auto {
+  margin-right: unset;
+  margin-left: auto;
+}
+
+[dir="rtl"] .pl-4 {
+  padding-left: unset;
+  padding-right: 1rem;
+}
+
+[dir="rtl"] .pr-4 {
+  padding-right: unset;
+  padding-left: 1rem;
+}
+
+/* Arabic typography */
+[dir="rtl"] body,
+[dir="rtl"] .font-inter,
+[dir="rtl"] .font-satoshi {
+  font-family: 'Noto Sans Arabic', 'Tajawal', sans-serif;
+  line-height: 1.7;
+  letter-spacing: normal;
+}
+
+[dir="rtl"] h1,
+[dir="rtl"] h2,
+[dir="rtl"] h3,
+[dir="rtl"] h4,
+[dir="rtl"] h5,
+[dir="rtl"] h6 {
+  font-family: 'Tajawal', 'Noto Sans Arabic', sans-serif;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Arabic font weights */
+[dir="rtl"] .font-black {
+  font-weight: 900;
+}
+
+[dir="rtl"] .font-bold {
+  font-weight: 700;
+}
+
+[dir="rtl"] .font-semibold {
+  font-weight: 600;
+}
+
+[dir="rtl"] .font-medium {
+  font-weight: 500;
+}
+
+/* RTL transform adjustments */
+[dir="rtl"] .rotate-180 {
+  transform: rotate(0deg);
+}
+
+[dir="rtl"] .translate-x-1 {
+  transform: translateX(-0.25rem);
+}
+
+[dir="rtl"] .-translate-x-1 {
+  transform: translateX(0.25rem);
+}
+
+/* Navigation adjustments for RTL */
+[dir="rtl"] .space-x-8 > :not([hidden]) ~ :not([hidden]) {
+  margin-right: 2rem;
+  margin-left: 0;
+}
+
+[dir="rtl"] .space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  margin-right: 1rem;
+  margin-left: 0;
+}
+
+[dir="rtl"] .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-right: 0.5rem;
+  margin-left: 0;
+}
+
+/* Icon adjustments for RTL */
+[dir="rtl"] .lucide {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .lucide-star,
+[dir="rtl"] .lucide-compass,
+[dir="rtl"] .lucide-globe {
+  transform: none;
+}
+
+/* Animation adjustments for RTL */
+[dir="rtl"] .animate-shimmer {
+  background-position: 200% 50%;
+  animation-direction: reverse;
+}
+
+/* Button adjustments for RTL */
+[dir="rtl"] .gap-2 {
+  direction: ltr;
+}
+
+[dir="rtl"] .gap-2 > * {
+  direction: rtl;
+}
+
+/* Premium component RTL support */
+[dir="rtl"] .grid {
+  direction: ltr;
+}
+
+[dir="rtl"] .grid > * {
+  direction: rtl;
+}
+
+/* Specific cultural elements */
+[dir="rtl"] .cultural-pattern {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .thuraya-compass {
+  transform: none; /* Keep compass orientation */
+}
+
+/* Mobile responsiveness for RTL */
+@media (max-width: 768px) {
+  [dir="rtl"] .flex-col-reverse {
+    flex-direction: column;
+  }
+  
+  [dir="rtl"] .text-center {
+    text-align: center !important;
+  }
+}
+
+/* Smooth language transitions */
+html {
+  transition: direction 0.3s ease;
+}
+
+body {
+  transition: font-family 0.3s ease;
+}
+
+/* Arabic numerals in RTL context */
+[dir="rtl"] .numeric {
+  direction: ltr;
+  display: inline-block;
+}

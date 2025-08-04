@@ -1,20 +1,23 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { Menu, X } from "lucide-react";
 import thurayaLogo from "@/assets/thuraya-logo-transparent.png";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   const navItems = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Services", href: "/services" },
-    { name: "Case Studies", href: "/case-studies" },
+    { name: t("navigation.home"), href: "/" },
+    { name: t("navigation.about"), href: "/about" },
+    { name: t("navigation.services"), href: "/services" },
+    { name: t("navigation.case_studies"), href: "/case-studies" },
     { name: "Resources", href: "/resources" },
-    { name: "Contact", href: "/contact" },
+    { name: t("navigation.contact"), href: "/contact" },
     { name: "Careers", href: "/careers" },
   ];
 
@@ -35,41 +38,53 @@ export function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex space-x-8">
-            {navItems.map((item) => (
+          <div className="hidden md:flex items-center space-x-8">
+            <div className="flex space-x-8">
+              {navItems.map((item) => (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className={`font-inter transition-colors ${
+                    location.pathname === item.href
+                      ? "text-golden"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              ))}
+            </div>
+            
+            {/* Language Switcher */}
+            <LanguageSwitcher />
+          </div>
+
+          {/* CTA Button & Mobile Elements */}
+          <div className="flex items-center space-x-4">
+            <div className="hidden md:block">
               <Link
-                key={item.name}
-                to={item.href}
-                className={`font-inter transition-colors ${
-                  location.pathname === item.href
-                    ? "text-golden"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
+                to="/contact"
+                className="bg-gradient-golden text-midnight px-6 py-2 rounded-full font-satoshi font-bold hover:shadow-glow transition-all duration-300"
               >
-                {item.name}
+                {t("navigation.book_consultation")}
               </Link>
-            ))}
-          </div>
+            </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Link
-              to="/contact"
-              className="bg-gradient-golden text-midnight px-6 py-2 rounded-full font-satoshi font-bold hover:shadow-glow transition-all duration-300"
+            {/* Mobile Language Switcher */}
+            <div className="md:hidden">
+              <LanguageSwitcher />
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-foreground"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={isOpen ? "true" : "false"}
             >
-              Get Started
-            </Link>
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-foreground"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={isOpen ? "true" : "false"}
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
         </div>
 
         {/* Mobile Navigation */}

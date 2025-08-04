@@ -1,0 +1,199 @@
+{
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "testimonials": "Testimonials",
+    "case_studies": "Case Studies",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "book_consultation": "Book Consultation"
+  },
+  "hero": {
+    "badge": "Exclusive Beta Program - Limited Access",
+    "headline": "Navigate Your Digital Destiny",
+    "subheadline": "The only consultancy that bridges ancient navigation wisdom with cutting-edge automation - transforming MENA businesses without disrupting their cultural essence.",
+    "cta_primary": "Begin Your Transformation",
+    "cta_secondary": "Strategic Navigation Session",
+    "social_proof": "Trusted by forward-thinking leaders across the MENA region",
+    "value_props": {
+      "cultural_intelligence": "Cultural Intelligence",
+      "precision_automation": "Precision Automation",
+      "strategic_pathfinding": "Strategic Pathfinding"
+    }
+  },
+  "services": {
+    "headline": "The Thuraya Pathfinding Methodology",
+    "subheadline": "Four cardinal directions to your digital transformation",
+    "cultural_assessment": {
+      "title": "Cultural Intelligence Assessment",
+      "subtitle": "Understanding Your Heritage",
+      "description": "Deep-dive analysis of your organizational culture, regional market dynamics, and traditional business practices to ensure technology integration respects and enhances your cultural identity.",
+      "features": [
+        "30-point cultural assessment",
+        "Regional market analysis", 
+        "Heritage preservation strategy"
+      ]
+    },
+    "automation_architecture": {
+      "title": "Automation Architecture Design",
+      "subtitle": "Building Your Digital Foundation",
+      "description": "Custom automation frameworks that align with Middle Eastern business practices, ensuring seamless integration without disrupting established workflows and relationships.",
+      "features": [
+        "Process optimization mapping",
+        "Technology stack selection",
+        "Change management protocol"
+      ]
+    },
+    "strategic_implementation": {
+      "title": "Strategic Implementation",
+      "subtitle": "Guided Transformation Journey",
+      "description": "Phase-by-phase implementation with cultural sensitivity coaching, ensuring your team adopts new technologies while maintaining the trust and relationships that define MENA business.",
+      "features": [
+        "Phased rollout strategy",
+        "Team training programs",
+        "Cultural adaptation guidance"
+      ]
+    },
+    "continuous_navigation": {
+      "title": "Continuous Navigation",
+      "subtitle": "Ongoing Excellence Partnership",
+      "description": "Quarterly strategic reviews and optimization cycles, ensuring your business continues to evolve with technology while staying true to its cultural roots and market position.",
+      "features": [
+        "Quarterly strategy sessions",
+        "Performance optimization",
+        "Market evolution tracking"
+      ]
+    },
+    "explore_path": "Explore This Path"
+  },
+  "about": {
+    "headline": "Ancient Wisdom Meets Modern Innovation",
+    "subheadline": "The story behind the Thuraya star and our mission",
+    "story_part1": "Named after the brightest star in the constellation Taurus, Thuraya has guided Middle Eastern navigators for millennia. Just as this celestial beacon helped traders traverse the vast deserts while respecting the land and its people, Thuraya Path Consultancy guides businesses through the digital landscape while honoring their cultural heritage.",
+    "story_part2": "Our founder combines 15+ years of McKinsey-level strategic consulting with deep understanding of MENA business culture, having facilitated over $2B in successful transformations across the region.",
+    "values": {
+      "cultural_respect": {
+        "title": "Cultural Respect",
+        "description": "Technology should enhance, not replace, cultural wisdom"
+      },
+      "strategic_precision": {
+        "title": "Strategic Precision", 
+        "description": "Every recommendation backed by data and regional expertise"
+      },
+      "sustainable_growth": {
+        "title": "Sustainable Growth",
+        "description": "Building systems that evolve with your business for decades"
+      }
+    }
+  },
+  "testimonials": {
+    "headline": "Voices of Transformation",
+    "subheadline": "Real leaders, authentic results",
+    "clients": {
+      "ahmed": {
+        "quote": "Thuraya Path didn't just digitize our business - they helped us become a better version of ourselves. Our automation works because it respects who we are.",
+        "name": "Ahmed Al-Rashid",
+        "title": "CEO, Heritage Holdings",
+        "location": "Dubai, UAE"
+      },
+      "fatima": {
+        "quote": "Finally, a consultancy that understands that technology must serve culture, not replace it. Our transformation preserved what makes us uniquely Middle Eastern.",
+        "name": "Fatima Al-Zahra",
+        "title": "Managing Director",
+        "location": "Doha, Qatar"
+      },
+      "khalid": {
+        "quote": "The Thuraya methodology transformed our century-old business while honoring our heritage. Remarkable results with cultural integrity intact.",
+        "name": "Khalid Ibn Rashid",
+        "title": "Chairman",
+        "location": "Jeddah, Saudi Arabia"
+      }
+    }
+  },
+  "case_studies": {
+    "headline": "From Routine to Remarkable",
+    "subheadline": "Real transformations, measurable results",
+    "view_details": "View Details",
+    "challenge": "Challenge",
+    "solution": "Solution", 
+    "results": "Results"
+  },
+  "pricing": {
+    "headline": "Investment in Your Digital Future",
+    "subheadline": "Transparent pricing for transformational results",
+    "navigation_assessment": {
+      "name": "Navigation Assessment",
+      "subtitle": "Discover Your Path",
+      "description": "Comprehensive cultural and operational assessment with strategic roadmap",
+      "ideal": "Perfect for: Businesses beginning their digital journey"
+    },
+    "guided_transformation": {
+      "name": "Guided Transformation",
+      "subtitle": "Complete Implementation", 
+      "description": "Full-service transformation with cultural preservation guarantee",
+      "ideal": "Perfect for: Companies ready for comprehensive change",
+      "recommended": "Most Popular"
+    },
+    "continuous_partnership": {
+      "name": "Continuous Partnership",
+      "subtitle": "Ongoing Excellence",
+      "description": "Strategic partnership for continuous evolution and optimization",
+      "ideal": "Perfect for: Established digital leaders seeking optimization"
+    },
+    "get_started": "Get Started",
+    "contact_sales": "Contact Sales"
+  },
+  "contact": {
+    "headline": "Begin Your Navigation",
+    "subheadline": "Schedule your complimentary Strategic Navigation Session",
+    "description": "Discover how the Thuraya Pathfinding Methodology can transform your business while preserving your cultural essence. Our 60-minute strategic session will provide you with actionable insights regardless of whether we work together.",
+    "cta": "Reserve Your Strategic Session",
+    "guarantee": "No obligation. Actionable insights guaranteed.",
+    "form": {
+      "name": "Full Name",
+      "email": "Business Email",
+      "phone": "Phone Number",
+      "company": "Company Name",
+      "title": "Your Title/Position",
+      "industry": "Industry",
+      "team_size": "Team Size",
+      "challenges": "What are your main business challenges or automation goals?",
+      "consultation_goals": "What would you like to achieve from this consultation?",
+      "timeline": "Expected Implementation Timeline",
+      "budget": "Estimated Budget Range (Optional)",
+      "submit": "Book Consultation",
+      "required": "Required"
+    }
+  },
+  "footer": {
+    "tagline": "Bridging ancient wisdom with modern automation",
+    "services_title": "Services",
+    "contact_title": "Contact",
+    "copyright": "© 2024 Thuraya Path Consultancy. All rights reserved.",
+    "services_links": {
+      "cultural_assessment": "Cultural Intelligence Assessment",
+      "automation_architecture": "Automation Architecture",
+      "strategic_implementation": "Strategic Implementation", 
+      "continuous_navigation": "Continuous Navigation"
+    }
+  },
+  "stats": {
+    "businesses_transformed": "Businesses Transformed",
+    "cultural_adoption_rate": "Cultural Adoption Rate", 
+    "countries_served": "Countries Served",
+    "client_satisfaction": "Client Satisfaction",
+    "descriptions": {
+      "businesses": "MENA organizations digitally transformed",
+      "adoption": "Successful cultural integration",
+      "countries": "Across the MENA region",
+      "satisfaction": "Exceptional service rating"
+    }
+  },
+  "language_switcher": {
+    "english": "English",
+    "arabic": "العربية",
+    "switch_to_arabic": "التبديل إلى العربية",
+    "switch_to_english": "Switch to English"
+  }
+}

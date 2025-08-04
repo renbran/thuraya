@@ -1,11 +1,13 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Navigation } from "@/components/Navigation";
 import { CTAButton } from "@/components/CTAButton";
 import { fadeInUp, staggerContainer } from "@/lib/variants";
 import { Brain, Network, Activity, Users, Calculator, ArrowRight, CheckCircle, Star } from "lucide-react";
 
 const Services = () => {
+  const { t } = useTranslation();
   const [selectedPricing, setSelectedPricing] = useState<"monthly" | "annual">("monthly");
   const [roiInputs, setRoiInputs] = useState({
     employees: 100,
@@ -16,124 +18,124 @@ const Services = () => {
   const services = [
     {
       id: "analytics",
-      title: "AI-Powered Analytics",
+      title: t('services.analytics.title'),
       icon: <Brain className="w-12 h-12" />,
-      description: "Transform raw data into predictive intelligence",
+      description: t('services.analytics.description'),
       process: [
-        "Data Discovery & Mapping",
-        "AI Model Development",
-        "Insight Generation & Automation"
+        t('services.analytics.process.0'),
+        t('services.analytics.process.1'),
+        t('services.analytics.process.2')
       ],
       benefits: [
-        "37% faster decision-making",
-        "Predictive accuracy up to 94%",
-        "Automated insight generation",
-        "Real-time anomaly detection"
+        t('services.analytics.benefits.0'),
+        t('services.analytics.benefits.1'),
+        t('services.analytics.benefits.2'),
+        t('services.analytics.benefits.3')
       ]
     },
     {
       id: "integration",
-      title: "Digital System Integration",
+      title: t('services.integration.title'),
       icon: <Network className="w-12 h-12" />,
-      description: "Connect isolated systems into unified intelligence",
+      description: t('services.integration.description'),
       process: [
-        "System Architecture Analysis",
-        "API Gateway Development",
-        "Seamless Data Flow Implementation"
+        t('services.integration.process.0'),
+        t('services.integration.process.1'),
+        t('services.integration.process.2')
       ],
       benefits: [
-        "Eliminate data silos",
-        "50% reduction in manual processes",
-        "Universal data accessibility",
-        "Scalable integration framework"
+        t('services.integration.benefits.0'),
+        t('services.integration.benefits.1'),
+        t('services.integration.benefits.2'),
+        t('services.integration.benefits.3')
       ]
     },
     {
       id: "monitoring",
-      title: "Operational Health Monitoring",
+      title: t('services.monitoring.title'),
       icon: <Activity className="w-12 h-12" />,
-      description: "Continuous system optimization and alerting",
+      description: t('services.monitoring.description'),
       process: [
-        "Health Metrics Definition",
-        "Monitoring Dashboard Setup",
-        "Intelligent Alert Configuration"
+        t('services.monitoring.process.0'),
+        t('services.monitoring.process.1'),
+        t('services.monitoring.process.2')
       ],
       benefits: [
-        "99.9% system uptime",
-        "Proactive issue resolution",
-        "Performance optimization",
-        "Cost reduction up to 42%"
+        t('services.monitoring.benefits.0'),
+        t('services.monitoring.benefits.1'),
+        t('services.monitoring.benefits.2'),
+        t('services.monitoring.benefits.3')
       ]
     },
     {
       id: "consulting",
-      title: "Strategic Consulting",
+      title: t('services.consulting.title'),
       icon: <Users className="w-12 h-12" />,
-      description: "Guide your digital transformation journey",
+      description: t('services.consulting.description'),
       process: [
-        "Digital Maturity Assessment",
-        "Transformation Roadmap Creation",
-        "Implementation Support"
+        t('services.consulting.process.0'),
+        t('services.consulting.process.1'),
+        t('services.consulting.process.2')
       ],
       benefits: [
-        "Clear transformation roadmap",
-        "Risk mitigation strategies",
-        "Change management support",
-        "Measurable ROI tracking"
+        t('services.consulting.benefits.0'),
+        t('services.consulting.benefits.1'),
+        t('services.consulting.benefits.2'),
+        t('services.consulting.benefits.3')
       ]
     }
   ];
 
   const pricingTiers = [
     {
-      name: "Starter",
-      description: "Perfect for growing businesses",
+      name: t('services.pricing.starter.name'),
+      description: t('services.pricing.starter.description'),
       monthlyPrice: 8999, // AED 8,999
       annualPrice: 89990, // AED 89,990 (10 months price)
-      userLimit: "Up to 10 users",
+      userLimit: t('services.pricing.starter.userLimit'),
       features: [
-        "Basic AI analytics",
-        "Up to 5 system integrations",
-        "Standard monitoring",
-        "Email support",
-        "Monthly reports",
-        "Up to 10 users included"
+        t('services.pricing.starter.features.0'),
+        t('services.pricing.starter.features.1'),
+        t('services.pricing.starter.features.2'),
+        t('services.pricing.starter.features.3'),
+        t('services.pricing.starter.features.4'),
+        t('services.pricing.starter.features.5')
       ],
       popular: false
     },
     {
-      name: "Silver",
-      description: "Most popular for mid-size companies (Monthly)",
+      name: t('services.pricing.silver.name'),
+      description: t('services.pricing.silver.description'),
       monthlyPrice: 26999, // AED 26,999 per month
       annualPrice: null, // Monthly only
-      userLimit: "Up to 25 users",
+      userLimit: t('services.pricing.silver.userLimit'),
       features: [
-        "Advanced AI analytics",
-        "Unlimited integrations",
-        "Real-time monitoring",
-        "24/7 priority support",
-        "Custom dashboards",
-        "Predictive alerts",
-        "API access",
-        "Up to 25 users included"
+        t('services.pricing.silver.features.0'),
+        t('services.pricing.silver.features.1'),
+        t('services.pricing.silver.features.2'),
+        t('services.pricing.silver.features.3'),
+        t('services.pricing.silver.features.4'),
+        t('services.pricing.silver.features.5'),
+        t('services.pricing.silver.features.6'),
+        t('services.pricing.silver.features.7')
       ],
       popular: true
     },
     {
-      name: "Enterprise",
-      description: "Full-scale transformation (Monthly)",
+      name: t('services.pricing.enterprise.name'),
+      description: t('services.pricing.enterprise.description'),
       monthlyPrice: 49999, // AED 49,999 per month
       annualPrice: null, // Monthly only
-      userLimit: "Up to 70 users",
+      userLimit: t('services.pricing.enterprise.userLimit'),
       features: [
-        "Enterprise AI suite",
-        "Custom model development",
-        "Dedicated infrastructure",
-        "White-glove support",
-        "Advanced security",
-        "SLA guarantees",
-        "On-site training",
-        "Up to 70 users included"
+        t('services.pricing.enterprise.features.0'),
+        t('services.pricing.enterprise.features.1'),
+        t('services.pricing.enterprise.features.2'),
+        t('services.pricing.enterprise.features.3'),
+        t('services.pricing.enterprise.features.4'),
+        t('services.pricing.enterprise.features.5'),
+        t('services.pricing.enterprise.features.6'),
+        t('services.pricing.enterprise.features.7')
       ],
       popular: false
     }
@@ -160,7 +162,7 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            What We Actually Do
+            {t('services.hero.title')}
           </motion.h1>
           
           <motion.p
@@ -169,7 +171,7 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            Transform operational chaos into intelligent clarity with our four core pillars
+            {t('services.hero.subtitle')}
           </motion.p>
         </div>
       </section>
@@ -209,7 +211,7 @@ const Services = () => {
                   {/* Process Steps */}
                   <div className="space-y-6">
                     <h3 className="text-2xl font-satoshi font-bold text-foreground">
-                      Our Process
+                      {t('services.sections.process')}
                     </h3>
                     {service.process.map((step, stepIndex) => (
                       <motion.div
@@ -237,7 +239,7 @@ const Services = () => {
                 >
                   <div className="bg-card border border-border rounded-2xl p-8">
                     <h3 className="text-2xl font-satoshi font-bold text-foreground mb-6">
-                      Key Benefits
+                      {t('services.sections.benefits')}
                     </h3>
                     <div className="space-y-4">
                       {service.benefits.map((benefit, benefitIndex) => (
@@ -254,13 +256,13 @@ const Services = () => {
                     <div className="bg-card border border-border rounded-2xl p-8">
                       <h3 className="text-2xl font-satoshi font-bold text-foreground mb-6 flex items-center">
                         <Calculator className="w-6 h-6 mr-2 text-aurora-start" />
-                        ROI Calculator
+                        {t('services.roiCalculator.title')}
                       </h3>
                       
                       <div className="space-y-4">
                         <div>
                           <label className="block text-sm font-inter text-muted-foreground mb-2">
-                            Number of Employees
+                            {t('services.roiCalculator.employees')}
                           </label>
                           <input
                             type="range"
@@ -275,7 +277,7 @@ const Services = () => {
                         
                         <div>
                           <label className="block text-sm font-inter text-muted-foreground mb-2">
-                            Current Efficiency (%)
+                            {t('services.roiCalculator.efficiency')}
                           </label>
                           <input
                             type="range"
@@ -290,7 +292,7 @@ const Services = () => {
                         
                         <div>
                           <label className="block text-sm font-inter text-muted-foreground mb-2">
-                            Average Hourly Rate (AED)
+                            {t('services.roiCalculator.hourlyRate')}
                           </label>
                           <input
                             type="range"
@@ -308,7 +310,7 @@ const Services = () => {
                             AED {calculateROI().toLocaleString()}
                           </div>
                           <div className="text-midnight/80 font-inter">
-                            Estimated Monthly Savings
+                            {t('services.roiCalculator.savings')}
                           </div>
                         </div>
                       </div>
@@ -332,13 +334,13 @@ const Services = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-satoshi font-black text-foreground mb-8">
-              Investment Plans
+              {t('services.pricing.title')}
             </h2>
             
             {/* Pricing Toggle */}
             <div className="flex items-center justify-center space-x-4 mb-12">
               <span className={`font-inter ${selectedPricing === 'monthly' ? 'text-foreground' : 'text-muted-foreground'}`}>
-                Monthly
+                {t('services.pricing.monthly')}
               </span>
               <button
                 onClick={() => setSelectedPricing(selectedPricing === 'monthly' ? 'annual' : 'monthly')}
@@ -351,13 +353,13 @@ const Services = () => {
                 />
               </button>
               <span className={`font-inter ${selectedPricing === 'annual' ? 'text-foreground' : 'text-muted-foreground'}`}>
-                Annual
-                <span className="text-aurora-start ml-1">(Save 17%)</span>
+                {t('services.pricing.annual')}
+                <span className="text-aurora-start ml-1">({t('services.pricing.save')})</span>
               </span>
             </div>
             
             <p className="text-center text-sm text-muted-foreground mb-8">
-              * Silver and Enterprise plans are monthly billing only
+              {t('services.pricing.note')}
             </p>
           </motion.div>
           
@@ -377,7 +379,7 @@ const Services = () => {
                   <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <div className="bg-aurora-start text-midnight px-4 py-2 rounded-full text-sm font-bold flex items-center">
                       <Star className="w-4 h-4 mr-1" />
-                      Most Popular
+                      {t('services.pricing.popular')}
                     </div>
                   </div>
                 )}
@@ -396,16 +398,16 @@ const Services = () => {
                         ? tier.monthlyPrice 
                         : Math.round(tier.annualPrice / 12)
                     ).toLocaleString()}
-                    <span className="text-lg text-muted-foreground font-normal">/month</span>
+                    <span className="text-lg text-muted-foreground font-normal">/{t('services.pricing.month')}</span>
                   </div>
                   {selectedPricing === 'annual' && tier.annualPrice && (
                     <p className="text-sm text-aurora-start font-inter mt-2">
-                      Billed annually
+                      {t('services.pricing.billedAnnually')}
                     </p>
                   )}
                   {!tier.annualPrice && (
                     <p className="text-sm text-muted-foreground font-inter mt-2">
-                      Monthly billing only
+                      {t('services.pricing.monthlyOnly')}
                     </p>
                   )}
                   
@@ -429,7 +431,7 @@ const Services = () => {
                   variant={tier.popular ? "primary" : "secondary"}
                   className="w-full"
                 >
-                  Get Started
+                  {t('services.pricing.getStarted')}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </CTAButton>
               </motion.div>
@@ -445,16 +447,16 @@ const Services = () => {
             viewport={{ once: true }}
           >
             <div className="text-center">
-              <div className="text-sm font-inter text-muted-foreground">SOC 2 Certified</div>
+              <div className="text-sm font-inter text-muted-foreground">{t('services.trustBadges.soc2')}</div>
             </div>
             <div className="text-center">
-              <div className="text-sm font-inter text-muted-foreground">GDPR Compliant</div>
+              <div className="text-sm font-inter text-muted-foreground">{t('services.trustBadges.gdpr')}</div>
             </div>
             <div className="text-center">
-              <div className="text-sm font-inter text-muted-foreground">99.9% SLA</div>
+              <div className="text-sm font-inter text-muted-foreground">{t('services.trustBadges.sla')}</div>
             </div>
             <div className="text-center">
-              <div className="text-sm font-inter text-muted-foreground">24/7 Support</div>
+              <div className="text-sm font-inter text-muted-foreground">{t('services.trustBadges.support')}</div>
             </div>
           </motion.div>
         </div>

@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 import { ThurayaCompass3D } from "./ThurayaCompass3D";
 import { ArrowRight, Star, Compass, Navigation, Target } from "lucide-react";
 import { premiumCopy } from "../content/premiumCopy";
@@ -11,6 +12,7 @@ interface PremiumHeroProps {
 
 export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) => {
   const ref = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"]
@@ -77,7 +79,7 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
             className="inline-flex items-center gap-2 px-4 py-2 bg-thuraya-gold/20 backdrop-blur-sm border border-thuraya-gold/30 rounded-full text-thuraya-gold text-sm font-medium"
           >
             <Star className="w-4 h-4" />
-            Exclusive Beta Program - Limited Access
+            {t("hero.badge")}
           </motion.div>
 
           {/* Main headline */}
@@ -87,7 +89,7 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
             transition={{ duration: 1, delay: 0.2 }}
           >
             <h1 className="text-hero font-satoshi font-black leading-none tracking-tight">
-              <span className="block text-white">Navigate Your</span>
+              <span className="block text-white">{t("hero.headline").split(" ").slice(0, 2).join(" ")}</span>
               <span 
                 className="block bg-gradient-thuraya bg-clip-text text-transparent animate-shimmer"
                 style={{
@@ -95,7 +97,7 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
                   backgroundImage: 'linear-gradient(90deg, #FFD700 0%, #00BFFF 25%, #8A2BE2 50%, #FFD700 75%, #00BFFF 100%)'
                 }}
               >
-                Digital Destiny
+                {t("hero.headline").split(" ").slice(2).join(" ")}
               </span>
             </h1>
           </motion.div>
@@ -107,8 +109,7 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-xl md:text-2xl text-thuraya-pearl/90 font-inter leading-relaxed max-w-2xl"
           >
-            The only consultancy that bridges <span className="text-thuraya-gold font-semibold">ancient navigation wisdom</span> with 
-            <span className="text-thuraya-constellation font-semibold"> cutting-edge automation</span> - transforming MENA businesses without disrupting their cultural essence.
+            {t("hero.subheadline")}
           </motion.p>
 
           {/* Value propositions */}
@@ -119,9 +120,9 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
             className="flex flex-wrap gap-6 justify-center lg:justify-start"
           >
             {[
-              { icon: Navigation, text: "Cultural Intelligence" },
-              { icon: Target, text: "Precision Automation" },
-              { icon: Compass, text: "Strategic Pathfinding" }
+              { icon: Navigation, text: t("hero.value_props.cultural_intelligence") },
+              { icon: Target, text: t("hero.value_props.precision_automation") },
+              { icon: Compass, text: t("hero.value_props.strategic_pathfinding") }
             ].map((item, index) => (
               <div key={index} className="flex items-center gap-2 text-thuraya-pearl/80">
                 <div className="w-8 h-8 rounded-full bg-thuraya-purple/20 flex items-center justify-center">
@@ -144,7 +145,7 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
               className="group relative px-8 py-4 bg-gradient-thuraya rounded-premium text-white font-satoshi font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-constellation overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-2">
-                Begin Your Transformation
+                {t("hero.cta_primary")}
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
@@ -154,7 +155,7 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
               onClick={onConsultation}
               className="px-8 py-4 border-2 border-thuraya-gold text-thuraya-gold rounded-premium font-satoshi font-bold text-lg transition-all duration-300 hover:bg-thuraya-gold hover:text-thuraya-navy backdrop-blur-sm"
             >
-              Strategic Navigation Session
+              {t("hero.cta_secondary")}
             </button>
           </motion.div>
 
@@ -165,7 +166,7 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
             transition={{ duration: 0.8, delay: 1 }}
             className="text-center lg:text-left"
           >
-            <p className="text-thuraya-pearl/60 text-sm mb-2">Trusted by forward-thinking leaders across the MENA region</p>
+            <p className="text-thuraya-pearl/60 text-sm mb-2">{t("hero.social_proof")}</p>
             <div className="flex items-center justify-center lg:justify-start gap-4">
               {[...Array(5)].map((_, i) => (
                 <Star key={i} className="w-4 h-4 text-thuraya-gold fill-current" />
