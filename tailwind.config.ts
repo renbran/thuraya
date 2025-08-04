@@ -28,6 +28,24 @@ export default {
 				mono: ['JetBrains Mono', 'monospace'],
 			},
 			colors: {
+				// Premium Thuraya Brand Colors
+				'thuraya': {
+					navy: '#1a365d',      // Deep navy - primary brand
+					gold: '#FFD700',      // Thuraya gold - accent
+					purple: '#8A2BE2',    // Accent purple - innovation
+					constellation: '#00BFFF', // Constellation blue - technology
+					sand: '#F4E4BC',      // Middle Eastern sand - warm neutral
+					midnight: '#0F1419',  // Premium dark
+					pearl: '#F8F9FA',     // Light neutral
+				},
+				// Cultural colors
+				cultural: {
+					copper: '#B87333',
+					turquoise: '#40E0D0',
+					saffron: '#F4C430',
+					marble: '#F5F5DC',
+				},
+				// Legacy colors
 				midnight: 'hsl(var(--midnight))',
 				golden: 'hsl(var(--golden))',
 				frost: 'hsl(var(--frost))',
@@ -75,6 +93,11 @@ export default {
 				'gradient-midnight': 'var(--gradient-midnight)',
 				'gradient-golden': 'var(--gradient-golden)',
 				'gradient-connectivity': 'var(--gradient-connectivity)',
+				// Premium Thuraya gradients
+				'gradient-thuraya': 'linear-gradient(135deg, #1a365d 0%, #8A2BE2 50%, #00BFFF 100%)',
+				'gradient-cultural': 'linear-gradient(45deg, #B87333 0%, #40E0D0 50%, #F4C430 100%)',
+				'gradient-premium': 'linear-gradient(135deg, #0F1419 0%, #1a365d 100%)',
+				'constellation-map': 'radial-gradient(circle at 30% 70%, #00BFFF 0%, transparent 50%), radial-gradient(circle at 70% 20%, #FFD700 0%, transparent 50%), radial-gradient(circle at 50% 50%, #8A2BE2 0%, transparent 50%)',
 			},
 			boxShadow: {
 				'glow': 'var(--shadow-glow)',
@@ -124,7 +147,37 @@ export default {
 					'0%, 20%, 50%, 80%, 100%': { transform: 'translateY(0)' },
 					'40%': { transform: 'translateY(-4px)' },
 					'60%': { transform: 'translateY(-2px)' }
-				}
+				},
+				// Premium Thuraya animations
+				'constellation': {
+					'0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+					'33%': { transform: 'translateY(-10px) rotate(120deg)' },
+					'66%': { transform: 'translateY(5px) rotate(240deg)' },
+				},
+				'cultural-pulse': {
+					'0%, 100%': { opacity: '0.7', transform: 'scale(1)' },
+					'50%': { opacity: '1', transform: 'scale(1.05)' },
+				},
+				'premium-glow': {
+					'0%': { boxShadow: '0 0 20px rgba(255, 215, 0, 0.3)' },
+					'100%': { boxShadow: '0 0 40px rgba(255, 215, 0, 0.6)' },
+				},
+				'rotate-compass': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' },
+				},
+				'shimmer': {
+					'0%': { backgroundPosition: '-200% center' },
+					'100%': { backgroundPosition: '200% center' },
+				},
+				'text-reveal': {
+					'0%': { transform: 'translateY(100%)', opacity: '0' },
+					'100%': { transform: 'translateY(0%)', opacity: '1' },
+				},
+				'scale-in': {
+					'0%': { transform: 'scale(0.95)', opacity: '0' },
+					'100%': { transform: 'scale(1)', opacity: '1' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -134,7 +187,15 @@ export default {
 				'slide-up': 'slide-up 0.5s ease-out',
 				'fade-in': 'fade-in 0.6s ease-out',
 				'particle': 'particle 10s ease-in-out infinite',
-				'bounce-subtle': 'bounce-subtle 2s infinite'
+				'bounce-subtle': 'bounce-subtle 2s infinite',
+				// Premium Thuraya animations
+				'constellation': 'constellation 20s ease-in-out infinite',
+				'cultural-pulse': 'cultural-pulse 4s ease-in-out infinite',
+				'premium-glow': 'premium-glow 3s ease-in-out infinite alternate',
+				'rotate-compass': 'rotate-compass 60s linear infinite',
+				'shimmer': 'shimmer 2s linear infinite',
+				'text-reveal': 'text-reveal 0.8s ease-out',
+				'scale-in': 'scale-in 0.6s ease-out',
 			}
 		}
 	},

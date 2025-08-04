@@ -3,9 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thuraya – Advanced Communications Solutions</title>
-    <meta name="description" content="Thuraya provides cutting-edge satellite communication solutions for global connectivity." />
-    <meta name="author" content="Thuraya" />
+    <title>Thuraya Path - Premier Automation Consultancy | Cultural Intelligence + Technology Excellence</title>
+    <meta name="description" content="Transform your MENA business with culturally-intelligent automation solutions. Expert consultancy combining ancient navigation wisdom with cutting-edge technology for sustainable growth." />
+    <meta name="keywords" content="automation consultancy MENA, cultural intelligence technology, business transformation Middle East, الأتمتة الذكية, التحول الرقمي, الاستشارات التقنية" />
+    <meta name="author" content="Thuraya Path" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#1a365d" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Thuraya Path" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="/thuraya-logo-symbol.png" />
+    <link rel="apple-touch-icon" href="/thuraya-logo-transparent.png" />
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,16 +28,70 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Satoshi:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
-    <meta property="og:title" content="52347e8d-b422-46f9-898f-eca198fb711b" />
-    <meta property="og:description" content="Lovable Generated Project" />
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="Thuraya Path - Premier Automation Consultancy" />
+    <meta property="og:description" content="Transform your MENA business with culturally-intelligent automation solutions combining ancient wisdom with modern technology." />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:image" content="/thuraya-logo-transparent.png" />
+    <meta property="og:url" content="https://thuraya-path.com" />
+    <meta property="og:site_name" content="Thuraya Path" />
 
-    <!-- No special routing needed for HashRouter -->
-
+    <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
-    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:title" content="Thuraya Path - Premier Automation Consultancy" />
+    <meta name="twitter:description" content="Cultural Intelligence + Technology Excellence for MENA Business Transformation" />
+    <meta name="twitter:image" content="/thuraya-logo-transparent.png" />
+    
+    <!-- Arabic Meta Tags -->
+    <meta name="title:ar" content="مسار الثريا - الاستشارة الرائدة في الأتمتة | الذكاء الثقافي + التميز التقني" />
+    <meta name="description:ar" content="حول أعمالك في منطقة الشرق الأوسط وشمال أفريقيا بحلول الأتمتة الذكية ثقافياً. استشارة خبيرة تجمع بين حكمة الملاحة القديمة والتكنولوجيا المتطورة للنمو المستدام." />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Thuraya Path",
+      "description": "Premier automation consultancy specializing in cultural intelligence and technology excellence for MENA businesses",
+      "url": "https://thuraya-path.com",
+      "logo": "/thuraya-logo-transparent.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+971-4-xxx-xxxx",
+        "contactType": "customer service",
+        "areaServed": ["AE", "SA", "QA", "KW", "BH", "OM", "JO", "LB"],
+        "availableLanguage": ["English", "Arabic"]
+      },
+      "serviceArea": {
+        "@type": "Place",
+        "name": "Middle East and North Africa (MENA)"
+      },
+      "sameAs": [
+        "https://linkedin.com/company/thuraya-path",
+        "https://twitter.com/thuraya_path"
+      ]
+    }
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </head>
 
   <body>

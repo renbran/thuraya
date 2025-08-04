@@ -6,97 +6,37 @@ import { NetworkBackground } from "@/components/NetworkBackground";
 import { CountUpCard } from "@/components/CountUpCard";
 import { ScrollIndicator } from "@/components/ScrollIndicator";
 import { CTAButton } from "@/components/CTAButton";
+import { PremiumHero } from "@/components/PremiumHero";
+import { PremiumServices } from "@/components/PremiumServices";
+import { PremiumAbout } from "@/components/PremiumAbout";
+import PremiumTestimonials from "@/components/PremiumTestimonials";
+import PremiumCaseStudies from "@/components/PremiumCaseStudies";
+import PremiumPricing from "@/components/PremiumPricing";
+import ConversionOptimization from "@/components/ConversionOptimization";
+import PremiumBooking from "@/components/PremiumBooking";
+import TechnicalExcellence from "@/components/TechnicalExcellence";
 import { fadeInUp, staggerContainer, slideInLeft, slideInRight } from "@/lib/variants";
 import thurayaLogo from "@/assets/thuraya-logo-new.png";
-import { Calendar, Users, Heart, Star, ArrowRight, Compass, Eye, Lightbulb } from "lucide-react";
+import { Calendar, Users, Heart, Star, ArrowRight, Compass, Eye, Lightbulb, Navigation2, Target, Settings } from "lucide-react";
 import { odooApi, type LeadData } from "../services/odooApi";
+import { premiumCopy } from "@/content/premiumCopy";
 
 const Index = () => {
   const { scrollYProgress } = useScroll();
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
-  // Hero Section
-  const HeroSection = () => (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden" data-section="0">
-      <Navigation />
-      <NetworkBackground />
-      <ParticleField />
-      
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-connectivity" />
-      
-      <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, y: 50 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="mb-8"
-        >
-          <img 
-            src={thurayaLogo} 
-            alt="Thuraya Path Logo" 
-            className="w-32 h-32 mx-auto mb-8 animate-float"
-          />
-          <h1 className="text-6xl md:text-7xl lg:text-8xl font-satoshi font-black leading-tight mb-6" 
-              style={{
-                background: 'linear-gradient(to right, #ffb347, #ffcc33, #00cfff, #7a4ef3)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
-              }}>
-            THURAYA PATH
-          </h1>
-          <p className="text-2xl md:text-3xl font-satoshi font-bold tracking-wider"
-             style={{
-               background: 'linear-gradient(to right, #ffb347, #ffcc33, #00cfff, #7a4ef3)',
-               WebkitBackgroundClip: 'text',
-               WebkitTextFillColor: 'transparent',
-               backgroundClip: 'text'
-             }}>
-            CONSULTANT
-          </p>
-        </motion.div>
-        
-        <motion.p
-          className="text-xl md:text-2xl text-frost/90 font-inter font-light leading-relaxed mb-12 max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          Your Trusted Partner in Strategic Consulting. Whether you're expanding into new markets, restructuring operations, or scaling with purpose — our bespoke strategies ensure your journey is refined and results-driven.
-        </motion.p>
-        
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center"
-        >
-          <CTAButton 
-            size="lg"
-            onClick={() => {
-              const nextSection = document.querySelector('[data-section="1"]');
-              nextSection?.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            Begin Your Journey
-            <Compass className="w-5 h-5 ml-2" />
-          </CTAButton>
-          <CTAButton 
-            variant="outline" 
-            size="lg"
-            onClick={() => {
-              const contactSection = document.querySelector('[data-section="5"]');
-              contactSection?.scrollIntoView({ behavior: 'smooth' });
-            }}
-          >
-            Free Consultation
-          </CTAButton>
-        </motion.div>
-      </div>
-      
-      <ScrollIndicator />
-    </section>
+  // Premium Hero Section
+  const PremiumHeroSection = () => (
+    <PremiumHero
+      onGetStarted={() => {
+        const nextSection = document.querySelector('[data-section="1"]');
+        nextSection?.scrollIntoView({ behavior: 'smooth' });
+      }}
+      onConsultation={() => {
+        const contactSection = document.querySelector('[data-section="5"]');
+        contactSection?.scrollIntoView({ behavior: 'smooth' });
+      }}
+    />
   );
 
   // About Section
@@ -318,7 +258,7 @@ const Index = () => {
         setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
       }, 5000);
       return () => clearInterval(interval);
-    }, []);
+    }, [testimonials.length]);
     
     return (
       <section ref={ref} className="py-20 bg-gradient-to-b from-background to-card/50" data-section="3">
@@ -574,11 +514,16 @@ const Index = () => {
   );
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <HeroSection />
-      <AboutSection />
-      <ServicesSection />
-      <TestimonialsSection />
+    <div className="min-h-screen bg-thuraya-midnight text-white">
+      <PremiumHeroSection />
+      <PremiumServices />
+      <PremiumAbout />
+      <PremiumTestimonials />
+      <PremiumCaseStudies />
+      <ConversionOptimization />
+      <PremiumPricing />
+      <PremiumBooking />
+      <TechnicalExcellence />
       <StatsSection />
       <ContactSection />
       <Footer />

@@ -31,8 +31,8 @@ const Contact = () => {
     console.log('Form submission started...', formData);
     
     try {
-      // Use the Odoo webhook for direct integration
-      const webhookResponse = await fetch('https://tachimao.com/web/hook/ce48db03-6320-4728-afe4-fc1c1d61388e', {
+      // Use the test Odoo webhook for direct integration
+      const webhookResponse = await fetch('https://coatest1.cloudpepper.site/web/hook/44b43f0c-2748-4024-a4e4-afe6609175a0', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
