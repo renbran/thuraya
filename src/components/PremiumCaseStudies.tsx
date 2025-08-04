@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { premiumCopy } from '../content/premiumCopy';
 import { 
   ChevronRight, 
   Calendar, 
@@ -48,98 +49,37 @@ interface CaseStudy {
   featured: boolean;
 }
 
-const caseStudies: CaseStudy[] = [
-  {
-    id: '1',
-    title: 'Digital Banking Transformation',
-    client: 'Emirates National Bank',
-    industry: 'Financial Services',
-    location: 'Dubai, UAE',
-    flag: '🇦🇪',
-    duration: '8 months',
-    teamSize: '12 specialists',
-    challenge: 'Legacy banking systems were creating customer friction and operational inefficiencies. Cultural resistance to digital adoption among traditional customers required sensitive handling.',
-    solution: 'Implemented a phased digital transformation approach that honored traditional banking relationships while introducing cutting-edge automation. Created culturally-aware customer journey mapping with Arabic language support and Islamic banking compliance.',
-    results: {
-      primary: '78% reduction in processing time',
-      secondary: '340% increase in digital adoption',
-      tertiary: '99.2% customer satisfaction'
-    },
-    metrics: {
-      roi: '450%',
-      efficiency: '+78%',
-      satisfaction: '99.2%'
-    },
-    technologies: ['AI-Powered KYC', 'Blockchain Verification', 'Islamic Banking Automation', 'Multi-language Chatbots'],
-    culturalElements: ['Islamic Banking Principles', 'Arabic Interface', 'Relationship-based Service', 'Cultural Sensitivity Training'],
-    testimonial: {
-      quote: 'Thuraya Path understood that successful digital transformation must honor our cultural values while embracing innovation.',
-      author: 'Dr. Ahmad Al-Mansouri',
-      title: 'Chief Executive Officer'
-    },
-    featured: true
+// Transform premium copy case studies into the component format
+const caseStudies: CaseStudy[] = premiumCopy.caseStudies.studies.map((study, index) => ({
+  id: (index + 1).toString(),
+  title: study.title,
+  client: study.title.split(' ')[0] + ' Enterprise', // Generate client name from title
+  industry: study.industry,
+  location: study.location,
+  flag: study.location.includes('Dubai') ? '🇦🇪' : study.location.includes('Saudi') ? '🇸🇦' : '��',
+  duration: '6 months',
+  teamSize: '10 specialists',
+  challenge: study.challenge,
+  solution: study.solution,
+  results: {
+    primary: study.results.efficiency,
+    secondary: study.results.revenue,
+    tertiary: study.results.satisfaction
   },
-  {
-    id: '2',
-    title: 'Healthcare Network Optimization',
-    client: 'Gulf Medical Alliance',
-    industry: 'Healthcare',
-    location: 'Riyadh, Saudi Arabia',
-    flag: '🇸🇦',
-    duration: '6 months',
-    teamSize: '8 specialists',
-    challenge: 'Fragmented healthcare delivery across multiple facilities with inconsistent patient experiences. Need for compliance with Saudi Vision 2030 while maintaining traditional patient care values.',
-    solution: 'Developed an integrated healthcare automation platform with cultural competency at its core. Implemented AI-driven patient routing that considers family dynamics and cultural preferences while optimizing medical outcomes.',
-    results: {
-      primary: '65% faster patient processing',
-      secondary: '89% improvement in care coordination',
-      tertiary: '92% staff adoption rate'
-    },
-    metrics: {
-      roi: '320%',
-      efficiency: '+65%',
-      satisfaction: '94.8%'
-    },
-    technologies: ['Healthcare AI', 'Patient Flow Optimization', 'Multi-facility Integration', 'Predictive Analytics'],
-    culturalElements: ['Family-centered Care', 'Gender-sensitive Routing', 'Traditional Medicine Integration', 'Arabic Medical Terminology'],
-    testimonial: {
-      quote: 'The technology enhanced our ability to provide compassionate, culturally-aware healthcare.',
-      author: 'Dr. Layla Hassan',
-      title: 'Chief Medical Officer'
-    },
-    featured: true
+  metrics: {
+    roi: study.results.efficiency.split('%')[0] + '%',
+    efficiency: study.results.efficiency,
+    satisfaction: study.results.satisfaction
   },
-  {
-    id: '3',
-    title: 'Supply Chain Revolution',
-    client: 'Levant Trade Consortium',
-    industry: 'Trade & Logistics',
-    location: 'Amman, Jordan',
-    flag: '🇯🇴',
-    duration: '5 months',
-    teamSize: '10 specialists',
-    challenge: 'Complex cross-border trade operations with multiple regulatory requirements across MENA region. Traditional relationship-based business practices needed integration with modern automation.',
-    solution: 'Built an intelligent supply chain platform that automates compliance checking while preserving the personal relationships crucial to MENA business culture. Integrated traditional trading practices with predictive analytics.',
-    results: {
-      primary: '84% reduction in customs delays',
-      secondary: '156% increase in trade volume',
-      tertiary: '91% partner satisfaction'
-    },
-    metrics: {
-      roi: '280%',
-      efficiency: '+84%',
-      satisfaction: '91.3%'
-    },
-    technologies: ['Blockchain Trade Finance', 'Predictive Customs', 'Multi-currency Processing', 'Partner Network Analytics'],
-    culturalElements: ['Relationship Preservation', 'Trust-based Transactions', 'Regional Compliance', 'Multi-language Documentation'],
-    testimonial: {
-      quote: 'They automated our processes while strengthening our business relationships - remarkable achievement.',
-      author: 'Mohammed bin Rashid',
-      title: 'Chairman'
-    },
-    featured: false
-  }
-];
+  technologies: ['AI-Powered Automation', 'Cultural Intelligence Platform', 'Process Optimization', 'Change Management'],
+  culturalElements: ['Cultural Preservation', 'MENA Business Values', 'Traditional Practice Integration', 'Regional Compliance'],
+  testimonial: {
+    quote: study.results.relationships || "Exceptional transformation with cultural sensitivity.",
+    author: 'Regional Business Leader',
+    title: 'Chief Executive'
+  },
+  featured: index === 0
+}));
 
 export default function PremiumCaseStudies() {
   const [selectedCase, setSelectedCase] = useState<string>(caseStudies[0].id);

@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Star, Quote, ChevronLeft, ChevronRight, Globe, TrendingUp, Users, Award } from 'lucide-react';
+import { premiumCopy } from '../content/premiumCopy';
 
 interface Testimonial {
   id: string;
@@ -24,78 +25,61 @@ interface Testimonial {
   arabic_name?: string;
 }
 
+// Enhanced testimonials using premium copy as base with additional details for premium presentation
 const testimonials: Testimonial[] = [
   {
     id: '1',
-    name: 'Dr. Ahmad Al-Mansouri',
-    arabic_name: 'د. أحمد المنصوري',
-    title: 'Chief Executive Officer',
-    company: 'Emirates Financial Group',
+    name: 'Ahmed Al-Rashid',
+    arabic_name: 'أحمد الراشد',
+    title: 'CEO',
+    company: 'Heritage Holdings',
     country: 'UAE',
     flag: '🇦🇪',
-    image: '/api/placeholder/100/100',
-    quote: 'Thuraya Path transformed our operations with their unique blend of cultural understanding and cutting-edge automation. Their approach honored our values while delivering exceptional results.',
+    image: '/src/assets/thuraya-logo-symbol.png', // Using company logo as placeholder
+    quote: premiumCopy.testimonials[0].quote,
     achievement: 'Digital Transformation Excellence',
     metrics: {
-      efficiency: '78% increase',
-      revenue: '$2.3M saved annually',
+      efficiency: '78% operational improvement',
+      revenue: '$2.3M annual savings',
       timeframe: '6 months'
     },
-    industry: 'Financial Services'
+    industry: premiumCopy.testimonials[0].industry
   },
   {
     id: '2',
     name: 'Fatima Al-Zahra',
     arabic_name: 'فاطمة الزهراء',
-    title: 'Managing Director',
-    company: 'Gulf Innovation Hub',
+    title: premiumCopy.testimonials[1].title,
+    company: 'Qatar Financial Excellence',
     country: 'Qatar',
     flag: '🇶🇦',
-    image: '/api/placeholder/100/100',
-    quote: 'The pathfinding methodology is revolutionary. They navigate complex organizational challenges with the wisdom of our ancestors and the precision of modern technology.',
+    image: '/src/assets/thuraya-logo-symbol.png',
+    quote: premiumCopy.testimonials[1].quote,
     achievement: 'Innovation Leadership Award 2023',
     metrics: {
       efficiency: '85% process optimization',
-      revenue: '340% ROI',
+      revenue: '340% ROI increase',
       timeframe: '4 months'
     },
-    industry: 'Technology & Innovation'
+    industry: premiumCopy.testimonials[1].industry
   },
   {
     id: '3',
-    name: 'Mohammed bin Rashid',
-    arabic_name: 'محمد بن راشد',
-    title: 'Chairman',
-    company: 'Levant Trade Consortium',
-    country: 'Jordan',
-    flag: '🇯🇴',
-    image: '/api/placeholder/100/100',
-    quote: 'Their cultural intelligence sets them apart. Thuraya Path understands that successful automation must respect and enhance human connections, not replace them.',
+    name: 'Khalid Ibn Rashid',
+    arabic_name: 'خالد بن راشد',
+    title: premiumCopy.testimonials[2].title,
+    company: 'Heritage Commerce Group',
+    country: 'Saudi Arabia',
+    flag: '��',
+    image: '/src/assets/thuraya-logo-symbol.png',
+    quote: premiumCopy.testimonials[2].quote,
     achievement: 'Regional Business Excellence',
     metrics: {
       efficiency: '92% accuracy improvement',
       revenue: '$1.8M growth',
       timeframe: '5 months'
     },
-    industry: 'Trade & Commerce'
-  },
-  {
-    id: '4',
-    name: 'Dr. Layla Hassan',
-    arabic_name: 'د. ليلى حسن',
-    title: 'Chief Technology Officer',
-    company: 'MENA Healthcare Alliance',
-    country: 'Saudi Arabia',
-    flag: '🇸🇦',
-    image: '/api/placeholder/100/100',
-    quote: 'Working with Thuraya Path was like having a trusted advisor who speaks both the language of technology and the language of our hearts. Exceptional results with cultural sensitivity.',
-    achievement: 'Healthcare Innovation Pioneer',
-    metrics: {
-      efficiency: '67% workflow optimization',
-      revenue: '$3.1M operational savings',
-      timeframe: '8 months'
-    },
-    industry: 'Healthcare Technology'
+    industry: premiumCopy.testimonials[2].industry
   }
 ];
 

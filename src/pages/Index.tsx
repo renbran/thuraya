@@ -137,222 +137,39 @@ const Index = () => {
     );
   };
 
-  // Services Section
-  const ServicesSection = () => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
-    
-    const services = [
-      {
-        icon: Compass,
-        title: "Life Path Consultation",
-        description: "Discover your authentic direction through personalized guidance and ancient wisdom practices.",
-        features: ["Personal Mission Discovery", "Values Alignment", "Decision Making Framework"]
-      },
-      {
-        icon: Eye,
-        title: "Career Transition Guidance",
-        description: "Navigate professional changes with confidence and clarity about your next chapter.",
-        features: ["Career Assessment", "Transition Planning", "Purpose-Driven Career Design"]
-      },
-      {
-        icon: Lightbulb,
-        title: "Spiritual Growth Mentoring",
-        description: "Deepen your spiritual practice and connection to your higher purpose.",
-        features: ["Meditation Guidance", "Spiritual Practices", "Inner Wisdom Development"]
-      }
-    ];
-    
-    return (
-      <section ref={ref} className="py-20 bg-gradient-golden/10 relative overflow-hidden" data-section="2">
-        {/* Background gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-golden/5 via-transparent to-aurora-start/5" />
-        <div className="container mx-auto px-4 relative z-10">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-satoshi font-black text-foreground mb-6">
-              Guidance for Every
-              <span className="bg-gradient-golden bg-clip-text text-transparent"> Journey</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Comprehensive consulting services designed to illuminate your path and empower your transformation
-            </p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                className="bg-card border border-border rounded-2xl p-8 group hover:shadow-mystical transition-all duration-300"
-                initial={{ opacity: 0, y: 50 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="mb-6">
-                  <service.icon className="w-12 h-12 text-golden mb-4" />
-                  <h3 className="text-2xl font-satoshi font-bold text-foreground mb-3">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
-                
-                <ul className="space-y-2">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-sm text-muted-foreground">
-                      <Star className="w-4 h-4 text-golden mr-2 flex-shrink-0" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                
-                <button 
-                  className="mt-6 text-golden font-medium hover:text-golden/80 transition-colors flex items-center group"
-                  aria-label="Learn more about this service"
-                >
-                  Learn More
-                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                </button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-  };
-
-  // Testimonials Section
-  const TestimonialsSection = () => {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: true });
-    
-    const testimonials = [
-      {
-        name: "Sarah Mitchell",
-        role: "Executive Coach",
-        content: "Working with Thuraya Path transformed not just my career, but my entire relationship with purpose. The guidance was profound and practical.",
-        rating: 5
-      },
-      {
-        name: "David Chen",
-        role: "Entrepreneur",
-        content: "The clarity I gained about my life direction was incredible. I finally understood how to align my business with my deepest values.",
-        rating: 5
-      },
-      {
-        name: "Maria Rodriguez",
-        role: "Artist & Writer",
-        content: "The spiritual mentoring helped me tap into a wellspring of creativity I didn't know existed. My art has never been more authentic.",
-        rating: 5
-      }
-    ];
-    
-    useEffect(() => {
-      const interval = setInterval(() => {
-        setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
-      }, 5000);
-      return () => clearInterval(interval);
-    }, [testimonials.length]);
-    
-    return (
-      <section ref={ref} className="py-20 bg-gradient-to-b from-background to-card/50" data-section="3">
-        <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl md:text-5xl font-satoshi font-black text-foreground mb-6">
-              Transformation
-              <span className="bg-gradient-golden bg-clip-text text-transparent"> Stories</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Real journeys of discovery, growth, and purposeful living
-            </p>
-          </motion.div>
-          
-          <div className="max-w-4xl mx-auto">
-            <motion.div
-              className="bg-card border border-border rounded-3xl p-12 text-center relative overflow-hidden"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8 }}
-            >
-              <div className="absolute top-6 right-6 flex space-x-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-golden text-golden" />
-                ))}
-              </div>
-              
-              <blockquote className="text-2xl md:text-3xl font-inter font-light text-foreground mb-8 leading-relaxed">
-                "{testimonials[activeTestimonial].content}"
-              </blockquote>
-              
-              <div className="space-y-2">
-                <h4 className="text-xl font-satoshi font-bold text-foreground">
-                  {testimonials[activeTestimonial].name}
-                </h4>
-                <p className="text-muted-foreground">
-                  {testimonials[activeTestimonial].role}
-                </p>
-              </div>
-              
-              {/* Navigation dots */}
-              <div className="flex justify-center space-x-2 mt-8">
-                {testimonials.map((testimonial, index) => (
-                  <button
-                    key={index}
-                    className={`w-3 h-3 rounded-full transition-colors ${
-                      index === activeTestimonial ? 'bg-golden' : 'bg-muted'
-                    }`}
-                    onClick={() => setActiveTestimonial(index)}
-                    aria-label={`View testimonial from ${testimonial.name} (${index + 1} of ${testimonials.length})`}
-                    aria-pressed={index === activeTestimonial ? "true" : "false"}
-                  />
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-    );
-  };
-
-  // Stats Section
+  // Stats Section for social proof metrics
   const StatsSection = () => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
     
     return (
-      <section ref={ref} className="py-20 bg-gradient-aurora/10 relative overflow-hidden" data-section="4">
-        {/* Background gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-aurora-start/5 via-transparent to-aurora-end/5" />
+      <section ref={ref} className="py-20 bg-gradient-premium/10 relative overflow-hidden">
+        <div className="absolute inset-0 bg-constellation-map opacity-10" />
         <div className="container mx-auto px-4 relative z-10">
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
             <CountUpCard
-              title="Lives Transformed"
-              value={500}
+              title="Businesses Transformed"
+              value={2500}
               suffix="+"
-              description="Individuals who found their true path"
+              description="MENA organizations digitally transformed"
             />
             <CountUpCard
-              title="Years of Wisdom"
+              title="Cultural Adoption Rate"
+              value={89}
+              suffix="%"
+              description="Successful cultural integration"
+            />
+            <CountUpCard
+              title="Countries Served"
               value={15}
               suffix="+"
-              description="Deep experience in spiritual guidance"
+              description="Across the MENA region"
             />
             <CountUpCard
-              title="Success Rate"
-              value={95}
+              title="Client Satisfaction"
+              value={98}
               suffix="%"
-              description="Clients who achieve lasting transformation"
+              description="Exceptional service rating"
             />
           </div>
         </div>
@@ -360,59 +177,64 @@ const Index = () => {
     );
   };
 
-  // Contact Section
+  // Contact Section with premium styling
   const ContactSection = () => {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: true });
     
     return (
-      <section ref={ref} className="py-20 bg-gradient-midnight relative overflow-hidden" data-section="5">
-        {/* Background gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-background/30 via-transparent to-background/30" />
+      <section ref={ref} className="py-20 bg-gradient-cultural relative overflow-hidden">
+        <div className="absolute inset-0 bg-constellation-map opacity-20" />
         <div className="container mx-auto px-4 text-center relative z-10">
           <motion.div
-            className="bg-gradient-golden rounded-3xl p-16 relative overflow-hidden max-w-4xl mx-auto"
+            className="bg-gradient-thuraya rounded-premium p-16 relative overflow-hidden max-w-4xl mx-auto"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-satoshi font-black text-midnight mb-8">
-              Ready to Discover Your Path?
+            <h2 className="text-4xl md:text-5xl font-satoshi font-black text-white mb-8">
+              Begin Your Digital Transformation
             </h2>
-            <p className="text-xl text-midnight/80 font-inter mb-12 max-w-2xl mx-auto">
-              Begin your journey of transformation with a complimentary consultation. 
-              Let's explore how we can illuminate your path together.
+            <p className="text-xl text-thuraya-pearl/90 font-inter mb-12 max-w-2xl mx-auto">
+              Start your journey with our complimentary Strategic Navigation Session. 
+              Discover how ancient wisdom meets cutting-edge automation.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <CTAButton 
                 variant="secondary" 
                 size="lg"
-                onClick={() => window.open('https://wa.me/971563905772?text=Hello, I would like to book a free consultation.', '_blank')}
+                onClick={() => {
+                  const nextSection = document.querySelector('[data-section="1"]');
+                  nextSection?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 <Calendar className="w-5 h-5 mr-2" />
-                Book Free Consultation
+                Book Strategic Session
               </CTAButton>
               <CTAButton 
                 variant="outline" 
                 size="lg"
-                onClick={() => window.location.href = 'mailto:info@tachimao.com?subject=Inquiry about your services'}
+                onClick={() => {
+                  const contactSection = document.querySelector('[data-section="5"]');
+                  contactSection?.scrollIntoView({ behavior: 'smooth' });
+                }}
               >
                 <Users className="w-5 h-5 mr-2" />
-                Email Us
+                Premium Consultation
               </CTAButton>
             </div>
             
             {/* Floating elements */}
             <motion.div
-              className="absolute top-8 left-8 text-midnight/30"
+              className="absolute top-8 left-8 text-white/20"
               animate={{ rotate: 360 }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
             >
               <Compass className="w-8 h-8" />
             </motion.div>
             <motion.div
-              className="absolute bottom-8 right-8 text-midnight/30"
+              className="absolute bottom-8 right-8 text-white/20"
               animate={{ y: [-10, 10, -10] }}
               transition={{ duration: 4, repeat: Infinity }}
             >
@@ -424,9 +246,9 @@ const Index = () => {
     );
   };
 
-  // Footer
+  // Premium Footer with Thuraya branding
   const Footer = () => (
-    <footer className="py-16 border-t border-border" data-section="6">
+    <footer className="py-16 border-t border-thuraya-gold/20 bg-thuraya-midnight">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div className="md:col-span-2">
@@ -436,38 +258,39 @@ const Index = () => {
                 alt="Thuraya Path Logo" 
                 className="w-10 h-10 mr-3"
               />
-              <h3 className="font-satoshi font-bold text-foreground text-xl">Thuraya Path Consultant</h3>
+              <h3 className="font-satoshi font-bold text-thuraya-pearl text-xl">Thuraya Path Consultancy</h3>
             </div>
-            <p className="text-muted-foreground mb-4 max-w-md">
-              Navigate your path to clarity, purpose, and transformation through ancient wisdom and modern insight.
+            <p className="text-thuraya-pearl/70 mb-4 max-w-md">
+              Navigate your business transformation with cultural intelligence and cutting-edge automation across the MENA region.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-golden transition-colors">
-                Instagram
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-golden transition-colors">
+              <a href="#" className="text-thuraya-pearl/60 hover:text-thuraya-gold transition-colors">
                 LinkedIn
               </a>
-              <a href="#" className="text-muted-foreground hover:text-golden transition-colors">
+              <a href="#" className="text-thuraya-pearl/60 hover:text-thuraya-gold transition-colors">
+                Twitter
+              </a>
+              <a href="#" className="text-thuraya-pearl/60 hover:text-thuraya-gold transition-colors">
                 YouTube
               </a>
             </div>
           </div>
           <div>
-            <h3 className="font-satoshi font-bold text-foreground mb-4">Services</h3>
-            <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-golden transition-colors">Life Path Consultation</a></li>
-              <li><a href="#" className="hover:text-golden transition-colors">Career Guidance</a></li>
-              <li><a href="#" className="hover:text-golden transition-colors">Spiritual Mentoring</a></li>
+            <h3 className="font-satoshi font-bold text-thuraya-pearl mb-4">Services</h3>
+            <ul className="space-y-2 text-thuraya-pearl/70">
+              <li><a href="#" className="hover:text-thuraya-gold transition-colors">Cultural Intelligence Assessment</a></li>
+              <li><a href="#" className="hover:text-thuraya-gold transition-colors">Automation Architecture</a></li>
+              <li><a href="#" className="hover:text-thuraya-gold transition-colors">Strategic Implementation</a></li>
+              <li><a href="#" className="hover:text-thuraya-gold transition-colors">Continuous Navigation</a></li>
             </ul>
           </div>
           <div>
-            <h3 className="font-satoshi font-bold text-foreground mb-4">Contact</h3>
-            <ul className="space-y-2 text-muted-foreground">
+            <h3 className="font-satoshi font-bold text-thuraya-pearl mb-4">Contact</h3>
+            <ul className="space-y-2 text-thuraya-pearl/70">
               <li>
                 <a 
                   href="mailto:info@tachimao.com" 
-                  className="hover:text-golden transition-colors"
+                  className="hover:text-thuraya-gold transition-colors"
                 >
                   info@tachimao.com
                 </a>
@@ -475,7 +298,7 @@ const Index = () => {
               <li>
                 <a 
                   href="tel:+971563905772" 
-                  className="hover:text-golden transition-colors"
+                  className="hover:text-thuraya-gold transition-colors"
                 >
                   +971 56 390 5772
                 </a>
@@ -485,28 +308,18 @@ const Index = () => {
                   href="https://wa.me/971563905772" 
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-golden transition-colors"
+                  className="hover:text-thuraya-gold transition-colors"
                 >
                   WhatsApp
-                </a>
-              </li>
-              <li>
-                <a 
-                  href="https://t.me/+971563905772" 
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-golden transition-colors"
-                >
-                  Telegram
                 </a>
               </li>
             </ul>
           </div>
         </div>
         
-        <div className="border-t border-border pt-8 text-center">
-          <p className="text-muted-foreground">
-            © 2024 Thuraya Path Consultant. All rights reserved. • Illuminating paths to purposeful living.
+        <div className="border-t border-thuraya-gold/20 pt-8 text-center">
+          <p className="text-thuraya-pearl/60">
+            © 2024 Thuraya Path Consultancy. All rights reserved. • Bridging ancient wisdom with modern automation.
           </p>
         </div>
       </div>

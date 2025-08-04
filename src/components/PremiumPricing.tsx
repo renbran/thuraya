@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { premiumCopy } from '../content/premiumCopy';
 import { 
   Check, 
   Star, 
@@ -36,98 +37,31 @@ interface PricingTier {
   deliveryTime: string;
 }
 
-const pricingTiers: PricingTier[] = [
-  {
-    id: 'pathfinder',
-    name: 'Pathfinder',
-    arabicName: 'الرائد',
-    description: 'Perfect for organizations beginning their automation journey with cultural sensitivity',
-    price: '$25,000',
-    period: 'project',
-    priceNote: 'Starting investment',
-    icon: Globe,
-    gradient: 'from-thuraya-navy to-thuraya-purple',
-    features: [
-      'Cultural Assessment & Strategy',
-      'Process Automation Design',
-      'Basic Implementation',
-      '3-month Support',
-      'Team Training (5 users)',
-      'Documentation in Arabic/English'
-    ],
-    culturalBenefits: [
-      'MENA Business Culture Analysis',
-      'Relationship-Preserving Automation',
-      'Islamic Compliance Review'
-    ],
-    recommended: false,
-    enterprise: false,
-    cta: 'Begin Your Journey',
-    deliveryTime: '2-3 months'
-  },
-  {
-    id: 'navigator',
-    name: 'Navigator',
-    arabicName: 'الملاح',
-    description: 'Comprehensive transformation for established businesses ready for premium automation',
-    price: '$75,000',
-    period: 'engagement',
-    priceNote: 'Most popular choice',
-    icon: Star,
-    gradient: 'from-thuraya-purple to-thuraya-gold',
-    features: [
-      'Everything in Pathfinder',
-      'Advanced AI Integration',
-      'Custom Workflow Development',
-      '6-month Premium Support',
-      'Team Training (15 users)',
-      'Performance Analytics Dashboard',
-      'Quarterly Strategy Reviews'
-    ],
-    culturalBenefits: [
-      'Deep Cultural Intelligence Integration',
-      'Multi-language Interface Development',
-      'Regional Compliance Automation',
-      'Traditional Business Practice Integration'
-    ],
-    recommended: true,
-    enterprise: false,
-    cta: 'Navigate to Success',
-    deliveryTime: '3-4 months'
-  },
-  {
-    id: 'constellation',
-    name: 'Constellation',
-    arabicName: 'البرج',
-    description: 'Enterprise-grade solution for large organizations requiring comprehensive transformation',
-    price: 'Custom',
-    period: 'quote',
-    priceNote: 'Enterprise pricing',
-    icon: Crown,
-    gradient: 'from-thuraya-gold to-thuraya-navy',
-    features: [
-      'Everything in Navigator',
-      'Enterprise Architecture Design',
-      'Multi-department Integration',
-      '12-month Platinum Support',
-      'Unlimited User Training',
-      'Real-time Performance Monitoring',
-      'Monthly Executive Reviews',
-      'Change Management Program'
-    ],
-    culturalBenefits: [
-      'Organization-wide Cultural Transformation',
-      'Executive Cultural Intelligence Training',
-      'Regional Expansion Automation',
-      'Cross-cultural Team Integration',
-      'Government Relations Automation'
-    ],
-    recommended: false,
-    enterprise: true,
-    cta: 'Enterprise Consultation',
-    deliveryTime: '4-6 months'
-  }
-];
+// Transform premium copy pricing into component format
+const pricingTiers: PricingTier[] = premiumCopy.pricing.packages.map((pkg, index) => ({
+  id: pkg.name.toLowerCase().replace(' ', '-'),
+  name: pkg.name,
+  arabicName: pkg.name === 'Navigation Assessment' ? 'تقييم الملاحة' : 
+               pkg.name === 'Guided Transformation' ? 'التحول المُوجَّه' : 'الشراكة المستمرة',
+  description: pkg.description,
+  price: pkg.price,
+  period: pkg.duration,
+  priceNote: pkg.ideal.replace('Perfect for: ', ''),
+  icon: index === 0 ? Globe : index === 1 ? Star : Crown,
+  gradient: index === 0 ? 'from-thuraya-navy to-thuraya-purple' :
+            index === 1 ? 'from-thuraya-purple to-thuraya-gold' : 'from-thuraya-gold to-thuraya-navy',
+  features: pkg.features,
+  culturalBenefits: [
+    'MENA Business Culture Analysis',
+    'Relationship-Preserving Automation', 
+    'Cultural Sensitivity Integration',
+    'Regional Compliance Review'
+  ],
+  recommended: pkg.recommended || false,
+  enterprise: index === 2,
+  cta: index === 0 ? 'Begin Assessment' : index === 1 ? 'Start Transformation' : 'Enterprise Consultation',
+  deliveryTime: pkg.duration
+}));
 
 const additionalServices = [
   {

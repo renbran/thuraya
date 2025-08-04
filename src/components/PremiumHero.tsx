@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ThurayaCompass3D } from "./ThurayaCompass3D";
 import { ArrowRight, Star, Compass, Navigation, Target } from "lucide-react";
+import { premiumCopy } from "../content/premiumCopy";
 
 interface PremiumHeroProps {
   onGetStarted: () => void;
