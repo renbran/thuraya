@@ -2,6 +2,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { ThurayaCompass3D } from "./ThurayaCompass3D";
+import { SimpleCompass3D } from "./SimpleCompass3D";
+import { ErrorBoundary } from "./ErrorBoundary";
 import { ArrowRight, Star, Compass, Navigation, Target } from "lucide-react";
 import { premiumCopy } from "../content/premiumCopy";
 
@@ -185,12 +187,33 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
             {/* Glow effect */}
             <div className="absolute inset-0 bg-thuraya-constellation/20 rounded-full blur-3xl animate-premium-glow" />
             
-            {/* 3D Compass */}
-            <ThurayaCompass3D 
-              className="relative z-10"
-              width="500px"
-              height="500px"
-            />
+            {/* 3D Compass - with error boundary */}
+            <div className="relative z-10 w-[500px] h-[500px]">
+              <ErrorBoundary
+                fallback={({ error, resetError }) => (
+                  <div className="w-full h-full flex items-center justify-center bg-black/20 rounded-full">
+                    <div className="text-center text-white/70">
+                      <div className="w-16 h-16 mx-auto mb-4 rounded-full border-2 border-thuraya-gold animate-spin border-t-transparent"></div>
+                      <p className="text-sm">3D Compass Loading...</p>
+                      <button 
+                        onClick={resetError}
+                        className="mt-2 px-3 py-1 bg-thuraya-gold text-black text-xs rounded"
+                      >
+                        Retry
+                      </button>
+                    </div>
+                  </div>
+                )}
+              >
+                {/* Test with simple 3D component first */}
+                <SimpleCompass3D className="w-full h-full" />
+                {/* <ThurayaCompass3D 
+                  className=""
+                  width="500px"
+                  height="500px"
+                /> */}
+              </ErrorBoundary>
+            </div>
 
             {/* Floating labels */}
             <motion.div
