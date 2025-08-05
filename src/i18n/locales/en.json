@@ -25,6 +25,126 @@
   "services": {
     "headline": "The Thuraya Pathfinding Methodology",
     "subheadline": "Four cardinal directions to your digital transformation",
+    "analytics": {
+      "title": "Business Intelligence & Analytics",
+      "description": "Transform your data into actionable insights with culturally-aware analytics solutions",
+      "process": [
+        "Data Assessment & Cultural Context Analysis",
+        "Custom Dashboard Development with Regional KPIs",
+        "AI-Powered Insights & Predictive Analytics"
+      ],
+      "benefits": [
+        "30% faster decision-making with culturally-relevant insights",
+        "Real-time business intelligence dashboards", 
+        "Predictive analytics for regional market trends",
+        "Data democratization across your organization"
+      ]
+    },
+    "integration": {
+      "title": "System Integration & Automation",
+      "description": "Seamlessly connect your business systems while preserving operational culture",
+      "process": [
+        "Legacy System Audit & Cultural Workflow Mapping",
+        "API Development & Custom Integration Solutions",
+        "Automated Workflow Implementation & Testing"
+      ],
+      "benefits": [
+        "50% reduction in manual processes",
+        "Seamless data flow across all systems",
+        "Elimination of data silos and redundancy",
+        "Scalable automation that grows with your business"
+      ]
+    },
+    "monitoring": {
+      "title": "Performance Monitoring & Optimization",
+      "description": "Continuous monitoring and optimization of your digital transformation",
+      "process": [
+        "Real-time Performance Tracking Setup",
+        "Cultural KPI Development & Implementation",
+        "Continuous Optimization & Strategic Adjustments"
+      ],
+      "benefits": [
+        "24/7 system monitoring and alerts",
+        "Proactive issue identification and resolution",
+        "Performance optimization recommendations",
+        "ROI tracking and cultural impact measurement"
+      ]
+    },
+    "consulting": {
+      "title": "Strategic Technology Consulting",
+      "description": "Expert guidance for technology decisions that align with your business culture",
+      "process": [
+        "Strategic Technology Assessment",
+        "Cultural Alignment & Change Management Planning",
+        "Implementation Roadmap & Success Metrics"
+      ],
+      "benefits": [
+        "Technology strategy aligned with business goals",
+        "Cultural change management expertise",
+        "Risk mitigation and compliance guidance",
+        "Ongoing strategic partnership and support"
+      ]
+    },
+    "pricing": {
+      "title": "Choose Your Transformation Path",
+      "monthly": "Monthly",
+      "annual": "Annual",
+      "save": "Save 2 months",
+      "note": "All plans include cultural intelligence assessment and regional compliance",
+      "month": "/month",
+      "starter": {
+        "name": "Navigation Starter",
+        "description": "Perfect for small businesses beginning their digital journey",
+        "userLimit": "Up to 10 users",
+        "features": [
+          "Cultural Intelligence Assessment",
+          "Basic Analytics Dashboard",
+          "Email & Phone Support",
+          "Monthly Strategy Session",
+          "Regional Compliance Check",
+          "Basic System Integration"
+        ]
+      },
+      "silver": {
+        "name": "Guided Transformation",
+        "description": "Comprehensive solution for growing businesses",
+        "userLimit": "Up to 50 users",
+        "features": [
+          "Everything in Navigation Starter",
+          "Advanced Analytics & Reporting",
+          "Custom Integration Solutions",
+          "Priority Support & Dedicated Account Manager",
+          "Bi-weekly Strategy Sessions",
+          "Change Management Support",
+          "Performance Monitoring Dashboard",
+          "Cultural Training Programs"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise Navigation",
+        "description": "Complete transformation for large organizations",
+        "userLimit": "Unlimited users",
+        "features": [
+          "Everything in Guided Transformation", 
+          "Enterprise-grade Security & Compliance",
+          "Custom Development & White-label Solutions",
+          "24/7 Priority Support",
+          "Weekly Strategic Reviews",
+          "Advanced AI & Machine Learning",
+          "Multi-region Deployment Support",
+          "Dedicated Customer Success Manager"
+        ]
+      },
+      "getStarted": "Get Started",
+      "popular": "Most Popular"
+    },
+    "roiCalculator": {
+      "title": "ROI Calculator",
+      "employees": "Number of Employees",
+      "efficiency": "Current Efficiency %",
+      "hourlyRate": "Average Hourly Rate (AED)",
+      "savings": "Monthly Savings with Thuraya Path"
+    },
     "cultural_assessment": {
       "title": "Cultural Intelligence Assessment",
       "subtitle": "Understanding Your Heritage",

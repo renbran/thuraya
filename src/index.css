@@ -8,34 +8,40 @@
 
 @layer base {
   :root {
-    /* THURAYA PATH Core Colors - Matching Email Template */
+    /* THURAYA PATH Core Colors - Enhanced for Readability */
     --midnight: 240 20% 8%;         /* Deep spiritual night */
-    --golden: 35 100 60;            /* #ffb347 equivalent */
-    --frost: 210 15% 92%;           /* Pure clarity */
+    --golden: 45 100% 55%;          /* Enhanced gold for better contrast */
+    --frost: 210 15% 96%;           /* Brighter for better readability */
     
-    /* Email Template Gradient Colors */
-    --aurora-start: 52 100 60;      /* #ffcc33 equivalent */
-    --aurora-end: 200 100 66;       /* #00cfff equivalent */
-    --mystic-purple: 253 42 95;     /* #7a4ef3 equivalent */
+    /* Email Template Gradient Colors - Enhanced */
+    --aurora-start: 52 100 65%;     /* Brighter gold */
+    --aurora-end: 200 100 70%;      /* Brighter blue */
+    --mystic-purple: 253 42 95%;    /* Maintained purple */
     
-    /* System Colors - Dark Theme */
+    /* Enhanced Text Colors for Dark Backgrounds */
+    --text-primary: 210 15% 98%;    /* Near white for primary text */
+    --text-secondary: 210 10% 85%;  /* Light gray for secondary text */
+    --text-accent: 45 100% 65%;     /* Bright gold for accents */
+    --text-muted: 210 8% 75%;       /* Lighter muted text */
+    
+    /* System Colors - Dark Theme Enhanced */
     --background: var(--midnight);
-    --foreground: var(--frost);
+    --foreground: var(--text-primary);
     
     --card: 197 71% 7%;
-    --card-foreground: var(--frost);
+    --card-foreground: var(--text-primary);
     
     --popover: 197 71% 8%;
-    --popover-foreground: var(--frost);
+    --popover-foreground: var(--text-primary);
     
     --primary: var(--golden);
     --primary-foreground: var(--midnight);
     
     --secondary: 240 15% 25%;
-    --secondary-foreground: var(--frost);
+    --secondary-foreground: var(--text-primary);
     
     --muted: 240 10% 20%;
-    --muted-foreground: 210 10% 70%;
+    --muted-foreground: var(--text-muted);
     
     --accent: var(--aurora-start);
     --accent-foreground: var(--midnight);
@@ -49,15 +55,17 @@
     
     --radius: 1rem;
     
-    /* Gradients - Matching Email Template */
+    /* Enhanced Gradients */
     --gradient-aurora: linear-gradient(135deg, hsl(var(--golden)), hsl(var(--aurora-start)), hsl(var(--aurora-end)), hsl(var(--mystic-purple)));
     --gradient-midnight: linear-gradient(180deg, hsl(var(--midnight)), hsl(240 20% 12%));
     --gradient-golden: linear-gradient(135deg, hsl(var(--golden)), hsl(var(--aurora-start)));
     --gradient-connectivity: linear-gradient(45deg, hsl(var(--golden)), hsl(var(--aurora-end)), hsl(var(--mystic-purple)));
     
-    /* Shadows */
+    /* Enhanced Shadows for Text Readability */
     --shadow-glow: 0 0 40px hsl(var(--golden) / 0.4);
     --shadow-mystical: 0 10px 30px hsl(var(--aurora-start) / 0.3);
+    --shadow-text: 0 2px 4px rgba(0, 0, 0, 0.8);
+    --shadow-text-glow: 0 0 8px hsl(var(--golden) / 0.6);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -110,5 +118,109 @@
 
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Enhanced Readability Utilities */
+@layer utilities {
+  /* Text readability classes for dark backgrounds */
+  .text-readable {
+    color: hsl(var(--text-primary));
+    text-shadow: var(--shadow-text);
+  }
+  
+  .text-readable-secondary {
+    color: hsl(var(--text-secondary));
+    text-shadow: var(--shadow-text);
+  }
+  
+  .text-readable-muted {
+    color: hsl(var(--text-muted));
+    text-shadow: var(--shadow-text);
+  }
+  
+  .text-brand-gold {
+    color: hsl(var(--golden));
+    text-shadow: var(--shadow-text-glow);
+    font-weight: 600;
+  }
+  
+  .text-brand-accent {
+    color: hsl(var(--aurora-start));
+    text-shadow: var(--shadow-text);
+    font-weight: 500;
+  }
+  
+  /* Enhanced contrast for buttons and interactive elements */
+  .btn-brand-primary {
+    background: hsl(var(--golden));
+    color: hsl(var(--midnight));
+    font-weight: 700;
+    text-shadow: none;
+  }
+  
+  .btn-brand-secondary {
+    background: transparent;
+    color: hsl(var(--golden));
+    border: 2px solid hsl(var(--golden));
+    font-weight: 600;
+    text-shadow: var(--shadow-text);
+  }
+  
+  /* Improved heading readability */
+  .heading-primary {
+    color: hsl(var(--text-primary));
+    text-shadow: var(--shadow-text);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+  
+  .heading-accent {
+    -webkit-background-clip: text;
+    background-clip: text;
+    background: linear-gradient(135deg, hsl(var(--golden)), hsl(var(--aurora-start)));
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+    text-shadow: none;
+  }
+  
+  /* Enhanced paragraph readability */
+  .paragraph-readable {
+    color: hsl(var(--text-secondary));
+    line-height: 1.7;
+    text-shadow: var(--shadow-text);
+  }
+  
+  .paragraph-muted {
+    color: hsl(var(--text-muted));
+    line-height: 1.6;
+    text-shadow: var(--shadow-text);
+  }
+  
+  /* Card and section improvements */
+  .card-readable {
+    background: hsl(240 15% 12% / 0.8);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--golden) / 0.2);
+  }
+  
+  /* Navigation improvements */
+  .nav-link {
+    color: hsl(var(--text-secondary));
+    font-weight: 500;
+    text-shadow: var(--shadow-text);
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    color: hsl(var(--golden));
+    text-shadow: var(--shadow-text-glow);
+  }
+  
+  .nav-link.active {
+    color: hsl(var(--golden));
+    text-shadow: var(--shadow-text-glow);
+    font-weight: 600;
   }
 }

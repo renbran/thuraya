@@ -328,6 +328,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-thuraya-midnight text-white">
+      <Navigation />
       <PremiumHeroSection />
       <PremiumServices />
       <PremiumAbout />

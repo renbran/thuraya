@@ -88,9 +88,9 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
             transition={{ duration: 1, delay: 0.2 }}
           >
             <h1 className="text-hero font-satoshi font-black leading-none tracking-tight">
-              <span className="block text-white">{(t("hero.headline") || "Navigate Your").split(" ").slice(0, 2).join(" ")}</span>
+              <span className="block heading-primary">{(t("hero.headline") || "Navigate Your").split(" ").slice(0, 2).join(" ")}</span>
               <span 
-                className="block bg-gradient-thuraya bg-clip-text text-transparent animate-shimmer"
+                className="block heading-accent animate-shimmer"
                 style={{
                   backgroundSize: '200% 100%',
                   backgroundImage: 'linear-gradient(90deg, #FFD700 0%, #00BFFF 25%, #8A2BE2 50%, #FFD700 75%, #00BFFF 100%)'
@@ -106,7 +106,7 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl md:text-2xl text-thuraya-pearl/90 font-inter leading-relaxed max-w-2xl"
+            className="text-xl md:text-2xl paragraph-readable font-inter max-w-2xl"
           >
             {t("hero.subheadline")}
           </motion.p>
@@ -123,9 +123,9 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
               { icon: Target, text: t("hero.value_props.precision_automation") },
               { icon: Compass, text: t("hero.value_props.strategic_pathfinding") }
             ].map((item, index) => (
-              <div key={index} className="flex items-center gap-2 text-thuraya-pearl/80">
+              <div key={index} className="flex items-center gap-2 text-readable-secondary">
                 <div className="w-8 h-8 rounded-full bg-thuraya-purple/20 flex items-center justify-center">
-                  <item.icon className="w-4 h-4 text-thuraya-purple" />
+                  <item.icon className="w-4 h-4 text-thuraya-purple-light" />
                 </div>
                 <span className="font-medium">{item.text}</span>
               </div>
@@ -141,7 +141,7 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
           >
             <button
               onClick={onGetStarted}
-              className="group relative px-8 py-4 bg-gradient-thuraya rounded-premium text-white font-satoshi font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-constellation overflow-hidden"
+              className="group relative btn-brand-primary px-8 py-4 rounded-premium text-lg transition-all duration-300 hover:scale-105 overflow-hidden"
             >
               <span className="relative z-10 flex items-center gap-2">
                 {t("hero.cta_primary")}
@@ -152,7 +152,7 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
 
             <button
               onClick={onConsultation}
-              className="px-8 py-4 border-2 border-thuraya-gold text-thuraya-gold rounded-premium font-satoshi font-bold text-lg transition-all duration-300 hover:bg-thuraya-gold hover:text-thuraya-navy backdrop-blur-sm"
+              className="btn-brand-secondary px-8 py-4 rounded-premium text-lg transition-all duration-300 hover:scale-105"
             >
               {t("hero.cta_secondary")}
             </button>
@@ -165,12 +165,12 @@ export const PremiumHero = ({ onGetStarted, onConsultation }: PremiumHeroProps) 
             transition={{ duration: 0.8, delay: 1 }}
             className="text-center lg:text-left"
           >
-            <p className="text-thuraya-pearl/60 text-sm mb-2">{t("hero.social_proof")}</p>
+            <p className="paragraph-muted text-sm mb-2">{t("hero.social_proof")}</p>
             <div className="flex items-center justify-center lg:justify-start gap-4">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-4 h-4 text-thuraya-gold fill-current" />
+                <Star key={i} className="w-4 h-4 text-thuraya-gold-light fill-current" />
               ))}
-              <span className="text-thuraya-pearl/80 text-sm ml-2">5.0 • 50+ transformations</span>
+              <span className="text-readable-secondary text-sm ml-2">5.0 • 50+ transformations</span>
             </div>
           </motion.div>
         </motion.div>

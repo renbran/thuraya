@@ -57,19 +57,19 @@ const ServiceCard = ({ service, index, isActive, onHover }: ServiceCardProps) =>
         {/* Content */}
         <div className="relative z-10">
           <h3 className={`text-2xl font-satoshi font-bold mb-2 transition-colors duration-500 ${
-            isActive ? 'text-white' : 'text-thuraya-pearl'
+            isActive ? 'heading-primary' : 'text-readable-secondary'
           }`}>
             {service.title}
           </h3>
           
           <p className={`text-lg font-medium mb-4 transition-colors duration-500 ${
-            isActive ? 'text-thuraya-gold' : 'text-thuraya-constellation'
+            isActive ? 'text-brand-gold' : 'text-brand-accent'
           }`}>
             {service.subtitle}
           </p>
           
           <p className={`text-base leading-relaxed mb-6 transition-colors duration-500 ${
-            isActive ? 'text-thuraya-pearl/90' : 'text-thuraya-pearl/70'
+            isActive ? 'paragraph-readable' : 'paragraph-muted'
           }`}>
             {service.description}
           </p>
@@ -79,10 +79,10 @@ const ServiceCard = ({ service, index, isActive, onHover }: ServiceCardProps) =>
             {service.features.map((feature, featureIndex) => (
               <li key={featureIndex} className="flex items-center gap-3">
                 <CheckCircle className={`w-5 h-5 transition-colors duration-500 ${
-                  isActive ? 'text-thuraya-gold' : 'text-thuraya-constellation'
+                  isActive ? 'text-thuraya-gold-light' : 'text-thuraya-constellation-light'
                 }`} />
                 <span className={`text-sm transition-colors duration-500 ${
-                  isActive ? 'text-thuraya-pearl' : 'text-thuraya-pearl/80'
+                  isActive ? 'text-readable' : 'text-readable-secondary'
                 }`}>
                   {feature}
                 </span>
@@ -96,8 +96,8 @@ const ServiceCard = ({ service, index, isActive, onHover }: ServiceCardProps) =>
             whileTap={{ scale: 0.98 }}
             className={`w-full py-3 px-6 rounded-cultural font-satoshi font-semibold transition-all duration-500 ${
               isActive 
-                ? 'bg-thuraya-gold text-thuraya-navy hover:bg-thuraya-gold/90' 
-                : 'bg-thuraya-purple/20 text-thuraya-purple hover:bg-thuraya-purple/30 border border-thuraya-purple/40'
+                ? 'btn-brand-primary hover:scale-105' 
+                : 'btn-brand-secondary hover:scale-105'
             }`}
           >
             <span className="flex items-center justify-center gap-2">
@@ -138,12 +138,12 @@ const MethodologyStats = () => {
           className="text-center group"
         >
           <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-thuraya flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <stat.icon className="w-6 h-6 text-white" />
+            <stat.icon className="w-6 h-6 text-readable" />
           </div>
-          <div className="text-3xl font-satoshi font-black text-thuraya-gold mb-2">
+          <div className="text-3xl font-satoshi font-black text-brand-gold mb-2">
             {stat.value}
           </div>
-          <div className="text-sm text-thuraya-pearl/80 font-medium">
+          <div className="text-sm text-readable-secondary font-medium">
             {stat.label}
           </div>
         </motion.div>
@@ -201,16 +201,16 @@ export const PremiumServices = () => {
           className="text-center mb-16"
         >
           {/* Premium Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-thuraya-gold/20 backdrop-blur-sm border border-thuraya-gold/30 rounded-full text-thuraya-gold text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-thuraya-gold/20 backdrop-blur-sm border border-thuraya-gold/30 rounded-full text-brand-gold text-sm font-medium mb-6">
             <Compass className="w-4 h-4" />
             Proven Methodology • Cultural Intelligence
           </div>
 
-          <h2 className="text-headline font-satoshi font-black text-white mb-6">
+          <h2 className="text-headline font-satoshi font-black heading-primary mb-6">
             {premiumCopy.services.headline}
           </h2>
           
-          <p className="text-xl text-thuraya-pearl/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl paragraph-readable max-w-3xl mx-auto">
             {premiumCopy.services.subheadline}
           </p>
         </motion.div>

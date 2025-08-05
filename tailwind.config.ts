@@ -30,15 +30,27 @@ export default {
 				arabic: ['Noto Sans Arabic', 'Tajawal', 'Arial', 'sans-serif'],
 			},
 			colors: {
-				// Premium Thuraya Brand Colors
+				// Premium Thuraya Brand Colors - Enhanced for Readability
 				'thuraya': {
 					navy: '#1a365d',      // Deep navy - primary brand
-					gold: '#FFD700',      // Thuraya gold - accent
+					gold: '#FFD700',      // Enhanced Thuraya gold - better contrast
+					'gold-light': '#FFED4E', // Lighter gold for better readability
 					purple: '#8A2BE2',    // Accent purple - innovation
+					'purple-light': '#9A4AFF', // Lighter purple for better contrast
 					constellation: '#00BFFF', // Constellation blue - technology
+					'constellation-light': '#33CFFF', // Lighter blue for readability
 					sand: '#F4E4BC',      // Middle Eastern sand - warm neutral
 					midnight: '#0F1419',  // Premium dark
 					pearl: '#F8F9FA',     // Light neutral
+					'pearl-bright': '#FFFFFF', // Pure white for high contrast
+					'pearl-readable': '#E8EAF0', // Slightly tinted for better readability
+				},
+				// Enhanced readability colors
+				readable: {
+					primary: 'hsl(var(--text-primary))',
+					secondary: 'hsl(var(--text-secondary))', 
+					muted: 'hsl(var(--text-muted))',
+					accent: 'hsl(var(--text-accent))',
 				},
 				// Cultural colors
 				cultural: {

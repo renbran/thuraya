@@ -21,14 +21,14 @@ const ValueCard = ({ value, index }: { value: typeof premiumCopy.about.values[0]
         
         <div className="relative z-10">
           <div className="w-12 h-12 rounded-full bg-gradient-thuraya flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-            <Heart className="w-6 h-6 text-white" />
+            <Heart className="w-6 h-6 text-readable" />
           </div>
           
-          <h3 className="text-xl font-satoshi font-bold text-thuraya-pearl mb-3">
+          <h3 className="text-xl font-satoshi font-bold text-readable mb-3">
             {value.title}
           </h3>
           
-          <p className="text-thuraya-pearl/70 leading-relaxed">
+          <p className="paragraph-readable">
             {value.description}
           </p>
         </div>
@@ -205,11 +205,11 @@ export const PremiumAbout = () => {
             Heritage • Innovation • Excellence
           </div>
 
-          <h2 className="text-headline font-satoshi font-black text-white mb-6">
+          <h2 className="text-headline font-satoshi font-black heading-primary mb-6">
             {premiumCopy.about.headline}
           </h2>
           
-          <p className="text-xl text-thuraya-pearl/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl paragraph-readable max-w-3xl mx-auto">
             {premiumCopy.about.subheadline}
           </p>
         </motion.div>
@@ -272,7 +272,7 @@ export const PremiumAbout = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-thuraya rounded-premium text-white font-satoshi font-bold text-lg transition-all duration-300 hover:shadow-constellation"
+              className="btn-brand-primary px-8 py-4 rounded-premium text-lg transition-all duration-300 hover:scale-105"
               onClick={() => {
                 const servicesSection = document.querySelector('[data-section="1"]');
                 servicesSection?.scrollIntoView({ behavior: 'smooth' });

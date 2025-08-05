@@ -32,7 +32,7 @@ export function Navigation() {
               alt="Thuraya Path Logo" 
               className="w-10 h-10"
             />
-            <span className="text-xl font-satoshi font-black bg-gradient-golden bg-clip-text text-transparent">
+            <span className="text-xl font-satoshi font-black text-brand-gold">
               THURAYA PATH
             </span>
           </Link>
@@ -46,8 +46,8 @@ export function Navigation() {
                   to={item.href}
                   className={`font-inter transition-colors ${
                     location.pathname === item.href
-                      ? "text-golden"
-                      : "text-muted-foreground hover:text-foreground"
+                      ? "nav-link active"
+                      : "nav-link"
                   }`}
                 >
                   {item.name}
@@ -64,7 +64,7 @@ export function Navigation() {
             <div className="hidden md:block">
               <Link
                 to="/contact"
-                className="bg-gradient-golden text-midnight px-6 py-2 rounded-full font-satoshi font-bold hover:shadow-glow transition-all duration-300"
+                className="btn-brand-primary px-6 py-2 rounded-full font-satoshi transition-all duration-300 hover:scale-105"
               >
                 {t("navigation.book_consultation")}
               </Link>
@@ -77,7 +77,7 @@ export function Navigation() {
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-foreground"
+              className="md:hidden text-readable"
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={isOpen ? "true" : "false"}
@@ -101,8 +101,8 @@ export function Navigation() {
                 to={item.href}
                 className={`block py-3 font-inter transition-colors ${
                   location.pathname === item.href
-                    ? "text-golden"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "nav-link active"
+                    : "nav-link"
                 }`}
                 onClick={() => setIsOpen(false)}
               >
@@ -111,7 +111,7 @@ export function Navigation() {
             ))}
             <Link
               to="/contact"
-              className="bg-gradient-golden text-midnight px-6 py-2 rounded-full font-satoshi font-bold inline-block mt-4"
+              className="btn-brand-primary px-6 py-2 rounded-full font-satoshi inline-block mt-4"
               onClick={() => setIsOpen(false)}
             >
               Get Started
