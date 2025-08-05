@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { CulturalBridge3D } from "./CulturalBridge3D";
+// import { CulturalBridge3D } from "./CulturalBridge3D";
 import { premiumCopy } from "@/content/premiumCopy";
 import { Star, Award, Users, Globe, ArrowRight, Heart } from "lucide-react";
 
@@ -215,13 +215,20 @@ export const PremiumAbout = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-20">
-          {/* Left side - 3D Cultural Bridge */}
+          {/* Left side - Cultural Bridge Fallback */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            <CulturalBridge3D />
+            {/* Fallback cultural visualization instead of 3D component */}
+            <div className="w-full h-96 bg-gradient-to-br from-thuraya-midnight/30 to-thuraya-navy/30 rounded-lg border border-thuraya-gold/20 flex items-center justify-center">
+              <div className="text-center text-thuraya-gold">
+                <Globe className="w-20 h-20 mx-auto mb-4 animate-slow-spin" />
+                <p className="text-lg font-light">Cultural Bridge</p>
+                <p className="text-sm opacity-70">Ancient Wisdom Meets Modern Innovation</p>
+              </div>
+            </div>
           </motion.div>
 
           {/* Right side - Story content */}

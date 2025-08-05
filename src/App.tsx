@@ -25,19 +25,15 @@ const AppContent = () => {
   
   // Show loading state while i18n is initializing
   if (!ready) {
-    console.log("i18n not ready yet. Current language:", i18n.language, "Ready state:", ready);
     return (
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-yellow-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-white/70">Initializing application...</p>
-          <p className="text-white/50 text-sm mt-2">Loading language: {i18n.language}</p>
         </div>
       </div>
     );
   }
-  
-  console.log("i18n ready! Language:", i18n.language, "Ready state:", ready);
   
   try {
     return (

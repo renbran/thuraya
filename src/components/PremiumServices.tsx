@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { PathfindingVisualization3D } from "./PathfindingVisualization3D";
+// import { PathfindingVisualization3D } from "./PathfindingVisualization3D";
 import { premiumCopy } from "@/content/premiumCopy";
 import { Compass, Settings, Navigation2, Target, ArrowRight, Star, CheckCircle, Clock, TrendingUp } from "lucide-react";
 
@@ -222,7 +222,13 @@ export const PremiumServices = () => {
           transition={{ duration: 1, delay: 0.3 }}
           className="mb-20"
         >
-          <PathfindingVisualization3D />
+          {/* Fallback visualization instead of 3D component */}
+          <div className="w-full h-64 bg-gradient-to-br from-thuraya-midnight/30 to-thuraya-navy/30 rounded-lg border border-thuraya-gold/20 flex items-center justify-center">
+            <div className="text-center text-thuraya-gold">
+              <Navigation2 className="w-16 h-16 mx-auto mb-4 animate-pulse" />
+              <p className="text-lg font-light">Pathfinding Methodology</p>
+            </div>
+          </div>
         </motion.div>
 
         {/* Services Grid */}
